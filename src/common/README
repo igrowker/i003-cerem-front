@@ -1,0 +1,1 @@
+Esta carpeta almacena componentes o utilidades compartidas que pueden ser reutilizadas en diferentes partes de la aplicación. Los módulos aquí suelen incluir funciones, constantes, helpers, o tipos que son genéricos y no pertenecen a un componente específico.

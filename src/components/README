@@ -1,0 +1,1 @@
+Los componentes reutilizables de la interfaz de usuario (UI) están organizados en esta carpeta. Cada componente puede representar una parte visual del sistema, como botones, formularios, tarjetas, tablas, etc. Estos componentes son modulares y se utilizan a lo largo de la aplicación para construir la UI.

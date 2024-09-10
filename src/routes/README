@@ -1,0 +1,1 @@
+Esta carpeta se usa para definir las rutas de la aplicación. Aquí se configura la navegación entre las diferentes páginas, manejando el enrutamiento dinámico o estático, y puede incluir protecciones de rutas basadas en roles o autenticación.
