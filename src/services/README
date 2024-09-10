@@ -1,0 +1,1 @@
+Los servicios contienen lógica de negocio o funcionalidad que interactúa con datos externos o realiza operaciones que no pertenecen directamente a la vista o la UI. Esto puede incluir lógica de validación, formateo de datos, o interacción con APIs.

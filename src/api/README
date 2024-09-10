@@ -1,0 +1,1 @@
+Esta carpeta contiene todos los archivos y módulos relacionados con la comunicación con APIs externas o internas. Los servicios aquí incluidos manejan las solicitudes HTTP y la lógica de interacción con los endpoints que proveen datos al frontend o consumen datos del backend.
