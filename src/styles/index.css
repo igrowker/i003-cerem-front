@@ -66,6 +66,7 @@
     @apply bg-background text-foreground;
     font-family: 'Lato', sans-serif;
     background-size: cover; 
+    background-image: url('/src/assets/BackgroundHero.svg');
     background-position: center;
     background-repeat: no-repeat;
     height: 50vh; 

@@ -7,14 +7,14 @@ function App() {
   return (
     <>
       <Router>
-        <NavComponent/>
-        <div className="container mx-auto">
+        <NavComponent />
+        <div className="mx-auto container">
           <Routes>
             <Route path="/iniciar-sesion" element={<LoginPage />} />
+            <Route path="/" element={<Hero />} />
           </Routes>
         </div>
       </Router>
-      <Hero/>
     </>
   );
 }
