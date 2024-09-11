@@ -1,20 +1,4 @@
-import { useState } from "react";
-// Define a type for navigation items
-type NavItem = {
-  name: string;
-  href: string;
-};
-
-const navigation: NavItem[] = [
-  { name: "Inicio", href: "#" },
-  { name: "Nosotros", href: "#" },
-  { name: "Funcionalidades", href: "#" },
-  { name: "Integraciones", href: "#" },
-];
-
 export default function Hero() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-
   return (
     <div className="min-h-screen text-white bg-white">
       <div className="relative isolate">
@@ -34,18 +18,20 @@ export default function Hero() {
             Gestiona campañas, clientes y tareas desde una plataforma integrada
             con IA, diseñada para emprendedores de marketing.
           </p>
-          <div className="flex flex-wrap gap-4 mt-8">
+          <div className="z-30 flex flex-wrap gap-4 mt-8">
             <a
               href="#"
-              className="px-10 py-5 text-lg font-medium text-white rounded-lg bg-navy"
+              className="block px-10 py-5 text-lg font-medium text-white transition-transform duration-300 transform rounded-lg cursor-pointer bg-navy hover:scale-105 hover:shadow-lg"
             >
-              Empieza
+              <span className="block w-full h-full cursor-pointer">Empieza</span>
             </a>
             <a
               href="#"
-              className="px-10 py-5 text-lg font-medium text-white border rounded-lg"
+              className="block px-10 py-5 text-lg font-medium text-white transition-transform duration-300 transform border rounded-lg cursor-pointer hover:scale-105 hover:shadow-lg"
             >
-              Trial <span aria-hidden="true">→</span>
+              <span className="block w-full h-full cursor-pointer">
+                Trial <span aria-hidden="true">→</span>
+              </span>
             </a>
           </div>
 
