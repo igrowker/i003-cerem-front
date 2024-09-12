@@ -75,7 +75,7 @@
 @layer base {
   .integrations {
     @apply bg-background text-foreground;
-    background-image: url("/src/assets/BackgroundIntegrations.svg"); /* Cambia el path a tu nueva imagen */
+    background-image: url("/src/assets/BackgroundIntegrations.svg"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
