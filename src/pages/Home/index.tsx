@@ -7,13 +7,10 @@ const HomePage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen"> {/* Ajuste para centrar */}
       <Hero />
-
       <Patrocinadores/>
-
       <div className="flex items-center justify-center w-full integrations">
         <Integrations />
       </div>
-
     </div>
   );
 };

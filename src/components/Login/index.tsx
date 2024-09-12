@@ -15,16 +15,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { loginSchema } from "@/validators/login.schema";
 import { PasswordInput } from "../ui/password-input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginComponent() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
   });
+  const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     console.log("Login attempted with:", values);
+    navigate("/dashboard");
   }
 
   return (

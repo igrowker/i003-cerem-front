@@ -34,13 +34,11 @@ export const Sidebar: React.FC = () => {
             </Link>
             <Link to="#">
               <span className="w-full h-10  flex items-center text-xl font-medium  text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
-                {" "}
                 <IoIosCalendar className="mr-2  " /> Calendario
               </span>
             </Link>
             <Link to="#">
               <span className="w-full h-10  flex items-center text-xl font-medium   text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
-                {" "}
                 <FaListUl className="mr-2  " /> Tareas
               </span>
             </Link>
@@ -66,13 +64,15 @@ export const Sidebar: React.FC = () => {
             <IoMdSettings className="mr-2 h-4 w-4" />
             Configuración
           </Button>
-          <Button
-            variant="ghost"
-            className="w-full justify-start text-[#779EBF] hover:text-[#5CE1E6] hover:bg-[#0097B2]/10"
-          >
-            <IoMdLogOut className="mr-2 h-4 w-4" />
-            Cerrar sesión
-          </Button>
+          <Link to={"/inicio"}>
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-[#779EBF] hover:text-[#5CE1E6] hover:bg-[#0097B2]/10"
+            >
+              <IoMdLogOut className="mr-2 h-4 w-4" />
+              Cerrar sesión
+            </Button>
+          </Link>
         </div>
       </div>
     </>

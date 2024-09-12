@@ -19,21 +19,24 @@ function LayoutWithNavAndSidebar() {
   const hideNav = noNavRoutes.includes(location.pathname);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div>
       {!hideNav && <NavComponent />}
-      {hideNav && <Sidebar />}
-      
-      <div style={{ flex: 1 }}>
-        <Routes>
-          <Route path="/iniciar-sesion" element={<LoginPage />} />
-          <Route path="/registrate" element={<RegisterPage />} />
-          <Route path="/" element={<Navigate to="/inicio" />} />
-          <Route path="/inicio" element={<HomePage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          {/* <Route path="/campañas" element={<CampaignsPage />} />
-          <Route path="/calendarios" element={<CalendarPage />} />
-          <Route path="/tareas" element={<TasksPage />} /> */}
-        </Routes>
+
+      <div className="flex">
+        {hideNav && <Sidebar />}
+
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/iniciar-sesion" element={<LoginPage />} />
+            <Route path="/registrate" element={<RegisterPage />} />
+            <Route path="/" element={<Navigate to="/inicio" />} />
+            <Route path="/inicio" element={<HomePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            {/* <Route path="/campañas" element={<CampaignsPage />} />
+            <Route path="/calendarios" element={<CalendarPage />} />
+            <Route path="/tareas" element={<TasksPage />} /> */}
+          </Routes>
+        </div>
       </div>
     </div>
   );

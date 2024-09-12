@@ -19,7 +19,7 @@ export default function DashboardComponent() {
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-[#08121F]">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-white">Dashboard</h1>
           <Button
             variant="outline"
             size="icon"
