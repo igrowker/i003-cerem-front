@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoIosCalendar, IoMdLogOut, IoMdSettings } from "react-icons/io";
-import { FaListUl } from "react-icons/fa";
+import { FaListUl, FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 
@@ -27,19 +27,24 @@ export const Sidebar: React.FC = () => {
             <img src="src/assets/logotipo_w.svg" alt="" className="h-20 " />
           </div>
           <div className="w-full h-[200px] flex flex-col justify-evenly ">
-            <Link to="#">
+            <Link to="/dashboard">
               <span className="w-full h-10  flex items-center text-xl font-medium  text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
-                <AiOutlineHome className="mr-2" /> Panel
+                <AiOutlineHome className="mr-2" /> Dashboard
               </span>
             </Link>
-            <Link to="#">
+            <Link to="/calendarios">
               <span className="w-full h-10  flex items-center text-xl font-medium  text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
                 <IoIosCalendar className="mr-2  " /> Calendario
               </span>
             </Link>
-            <Link to="#">
+            <Link to="/tareas">
               <span className="w-full h-10  flex items-center text-xl font-medium   text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
                 <FaListUl className="mr-2  " /> Tareas
+              </span>
+            </Link>
+            <Link to="/clientes">
+              <span className="w-full h-10  flex items-center text-xl font-medium   text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
+                <FaUsers className="mr-2  " /> Clientes
               </span>
             </Link>
           </div>
