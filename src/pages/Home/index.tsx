@@ -1,10 +1,14 @@
 import Hero from "@/components/Hero";
+import { Sidebar } from "../../components/Sidebar/Sidebar";
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Hero />
-    </div>
+      <div className="w-full h-screen bg-white ">
+        <Sidebar />
+      </div>
+    </>
   );
 };
 
