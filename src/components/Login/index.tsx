@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { loginSchema } from "@/validators/login.schema";
 import { PasswordInput } from "../ui/password-input";
+import { Link } from "react-router-dom";
 
 export default function LoginComponent() {
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -81,9 +82,9 @@ export default function LoginComponent() {
           </form>
         </Form>
         <div className="mt-4 text-center">
-          <a href="#" className="text-[#0097B2] hover:text-[#5CE1E6]">
+          <Link to="#" className="text-[#0097B2] hover:text-[#5CE1E6]">
             ¿Olvidaste tu contraseña?
-          </a>
+          </Link>
         </div>
       </div>
     </div>
