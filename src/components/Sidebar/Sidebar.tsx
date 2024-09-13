@@ -25,7 +25,7 @@ export const Sidebar: React.FC = () => {
       <div
         className={` ${
           isOpen ? "w-[300px]" : "w-24"
-        } transition-all duration-500 ease-in-out} w-[300px] h-screen bg-navy border-r-4  flex flex-col items-center justify-between `}
+        } transition-all duration-500 ease-in-out}  h-screen bg-navy border-r-4  flex flex-col items-center justify-between `}
       >
         <div className="w-3/4">
           <LogoSideBar isOpen={isOpen} url="/dashboard" />

@@ -13,7 +13,6 @@ export const LogoSideBar: React.FC<LogoSideBarProps> = ({ isOpen, url }) => {
       {isOpen ? (
         <div className="w-full h-20 mt-5 flex justify-start">
           <img src="src/assets/isotipo.svg" alt="" className="w-10" />
-
           <img src="src/assets/logotipo_w.svg" alt="" className="h-20 " />
         </div>
       ) : (
