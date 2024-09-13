@@ -14,12 +14,6 @@ export const Sidebar: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  // cyanLight: "#5CE1E6",
-  // cyanDark: "#0097B2",
-  // blueGray: "#779EBF",
-  // navy: "#08121F",
-  // lightGray: "#F7FAFC",
-
   return (
     <>
       <div
