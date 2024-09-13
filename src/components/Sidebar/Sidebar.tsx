@@ -59,7 +59,7 @@ export const Sidebar: React.FC = () => {
         </div>
         <div className="w-full flex items-end justify-end">
           <button onClick={toggleSidebar} className=" text-white text-4xl">
-            {isOpen ? <IoIosArrowForward /> : <IoIosArrowBack />}
+            {isOpen ? <IoIosArrowBack /> : <IoIosArrowForward />}
           </button>
         </div>
 
