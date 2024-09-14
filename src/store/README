@@ -1,0 +1,1 @@
+Esta carpeta incluye el manejo del estado global de la aplicación. Es probable que aquí se implementen librerías como Zustand, Redux, o cualquier otro sistema de gestión de estado. El store centraliza los datos que necesitan ser compartidos y sincronizados entre múltiples componentes o partes de la aplicación.
