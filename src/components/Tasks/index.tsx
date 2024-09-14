@@ -40,7 +40,7 @@ export default function TasksComponent() {
   const handleEditItem = (id: number) => {
     const itemToEdit = items.find((item) => item.id === id);
     if (itemToEdit) {
-      setNewItem(itemToEdit);
+      // setNewItem(itemToEdit);
       setEditingId(id);
     }
   };
@@ -98,10 +98,10 @@ export default function TasksComponent() {
                   />
                   <Select
                     value={newItem.type}
-                    onValueChange={(value) =>
+                    onValueChange={() =>
                       setNewItem({
                         ...newItem,
-                        type: value as "task" | "event",
+                        // type: value as "task" | "event",
                       })
                     }
                   >
