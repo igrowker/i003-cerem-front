@@ -2,6 +2,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TableComponent } from "../Table";
 import { useClients } from "@/hooks/Client/useClients";
 import { getColumns } from "./columns";
+import { useState } from "react";
+import { Client } from "@/types/Client/Client";
+import CreateClientDialog from "./Create";
 
 export default function ClientsComponent() {
   const { clients } = useClients({
@@ -9,7 +12,14 @@ export default function ClientsComponent() {
     fetchClients: true,
   });
 
+  const [isCreateClientDialogOpen, setIsCreateClientDialogOpen] =
+    useState(false);
+  const openCreateClientDialog = () => setIsCreateClientDialogOpen(true);
+
   const columns = getColumns();
+
+  const customFilterFunction = (client: Client, query: string) =>
+    client.name.toLowerCase().includes(query.toLowerCase());
 
   return (
     <div className="flex-1 overflow-auto">
@@ -29,12 +39,14 @@ export default function ClientsComponent() {
               <TableComponent
                 data={clients}
                 columns={columns}
+                onAddClick={openCreateClientDialog}
                 showSearch={true}
+                customFilter={customFilterFunction}
                 searchPlaceholder="Buscar clientes..."
-                // addLinkPath="/clientes/nuevo"
                 addLinkText="Nuevo Cliente"
               />
             </div>
+            <CreateClientDialog isOpen={isCreateClientDialogOpen} setIsOpen={setIsCreateClientDialogOpen} />
           </CardContent>
         </Card>
       </div>
