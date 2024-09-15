@@ -35,7 +35,7 @@ export default function Hero() {
           {/* Dashboard Image */}
           <div className="w-full max-w-6xl overflow-hidden max-h-[730px]">
             <img
-              src="src/assets/web_dashboard.svg"
+              src="/assets/web_dashboard.svg"
               alt="App screenshot"
               className="relative object-cover rounded-md bottom-5"
             />
