@@ -1,4 +1,4 @@
-import ClientsComponent from "@/components/Clients";
+import ClientsComponent from "@/components/Clients/Table";
 
 const ClientsPage = () => {
   return <ClientsComponent />;

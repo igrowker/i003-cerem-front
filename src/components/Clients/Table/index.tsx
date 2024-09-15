@@ -1,10 +1,11 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { TableComponent } from "../Table";
+import { TableComponent } from "../../Table";
 import { useClients } from "@/hooks/Client/useClients";
 import { getColumns } from "./columns";
 import { useState } from "react";
 import { Client } from "@/types/Client/Client";
-import CreateClientDialog from "./Create";
+import CreateClientDialog from "../Create";
+import EditClientDialog from "../Edit";
 
 export default function ClientsComponent() {
   const { clients } = useClients({
@@ -15,12 +16,19 @@ export default function ClientsComponent() {
   const [isCreateClientDialogOpen, setIsCreateClientDialogOpen] =
     useState(false);
   const openCreateClientDialog = () => setIsCreateClientDialogOpen(true);
-
-  const columns = getColumns();
-
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editingClient, setEditingClient] = useState<Client | null>(null);
+  
   const customFilterFunction = (client: Client, query: string) =>
     client.name.toLowerCase().includes(query.toLowerCase());
-
+  
+  const handleEditClient = (client: Client) => {
+    setEditingClient(client);
+    setIsEditDialogOpen(true);
+  };
+  
+  const columns = getColumns(handleEditClient);
+  
   return (
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
@@ -46,7 +54,17 @@ export default function ClientsComponent() {
                 addLinkText="Nuevo Cliente"
               />
             </div>
-            <CreateClientDialog isOpen={isCreateClientDialogOpen} setIsOpen={setIsCreateClientDialogOpen} />
+            <CreateClientDialog
+              isOpen={isCreateClientDialogOpen}
+              setIsOpen={setIsCreateClientDialogOpen}
+            />
+            {isEditDialogOpen && editingClient && (
+              <EditClientDialog
+                isOpen={isEditDialogOpen}
+                setIsOpen={setIsEditDialogOpen}
+                client={editingClient}
+              />
+            )}
           </CardContent>
         </Card>
       </div>

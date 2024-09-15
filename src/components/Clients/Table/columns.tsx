@@ -1,7 +1,11 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Client } from "@/types/Client/Client";
+import { Button } from "../../ui/button";
+import DeleteClientDialog from "../Delete";
 
-export const getColumns = (): ColumnDef<Client>[] => {
+export const getColumns = (
+  onEditClient: (client: Client) => void
+): ColumnDef<Client>[] => {
   const columns: ColumnDef<Client>[] = [
     {
       accessorKey: "#",
@@ -26,6 +30,16 @@ export const getColumns = (): ColumnDef<Client>[] => {
       cell: ({ row }) => (
         <div className="flex items-center">
           <p className="text-sm font-medium">{row.original.email}</p>
+        </div>
+      ),
+    },
+    {
+      accessorKey: "",
+      header: " ",
+      cell: ({ row }) => (
+        <div className="flex items-end justify-end gap-2">
+          <Button onClick={() => onEditClient(row.original)} className="bg-gray-700 hover:bg-gray-600">Editar</Button>
+          <DeleteClientDialog idClient={row.original.id} />
         </div>
       ),
     },
