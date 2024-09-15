@@ -31,7 +31,7 @@ export default function RegisterComponent() {
     <div className="mt-20 flex items-center justify-center">
       <div className="bg-[#F7FAFC] p-8 rounded-lg shadow-xl w-96">
         <div className="flex justify-center mb-6">
-          <img src="src/assets/isotipo_b.svg" alt="" className="w-16 h-16" />
+          <img src="/assets/isotipo_b.svg" alt="" className="w-16 h-16" />
           {/* <img src="src/assets/logotipo_b.svg" alt="" className="w-16 h-16" /> */}
         </div>
         <h2 className="text-2xl font-bold text-center text-[#08121F] mb-6">

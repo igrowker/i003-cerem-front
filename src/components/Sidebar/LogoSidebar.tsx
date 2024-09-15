@@ -12,12 +12,12 @@ export const LogoSideBar: React.FC<LogoSideBarProps> = ({ isOpen, url }) => {
     <Link to={url}>
       {isOpen ? (
         <div className="w-full h-20 mt-5 flex justify-start">
-          <img src="src/assets/isotipo.svg" alt="" className="w-10" />
-          <img src="src/assets/logotipo_w.svg" alt="" className="h-20 " />
+          <img src="/assets/isotipo.svg" alt="" className="w-10" />
+          <img src="/assets/logotipo_w.svg" alt="" className="h-20 " />
         </div>
       ) : (
         <div className="w-full h-20 mt-5 flex justify-center">
-          <img src="src/assets/isotipo.svg" alt="Isotipo" className="w-10" />
+          <img src="/assets/isotipo.svg" alt="Isotipo" className="w-10" />
         </div>
       )}
     </Link>
