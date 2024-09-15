@@ -20,20 +20,26 @@ const ErrorPage: React.FC = () => {
       </p>
 
       <div className="mt-6">
-        <Link to="/" className="text-navy font-semibold hover:underline">
+        <Link
+          to="/"
+          className="w-40 p-2 bg-navy text-lightGray font-semibold hover:bg-blueGray hover:text-lightGray rounded-lg"
+        >
           Volver al inicio
         </Link>
       </div>
       <div className="mt-4">
         <Link
           to="/dashboard"
-          className="text-navy font-semibold hover:underline"
+          className="w-40 p-2 bg-navy text-lightGray font-semibold hover:bg-blueGray hover:text-lightGray rounded-lg"
         >
           Ir al Dashboard
         </Link>
       </div>
       <div className="mt-4">
-        <Link to="/help" className="text-navy font-semibold hover:underline">
+        <Link
+          to="/help"
+          className="max-w-40 p-2 bg-navy text-lightGray font-semibold hover:bg-navy hover:text-lightGray rounded-lg"
+        >
           Centro de ayuda
         </Link>
       </div>
