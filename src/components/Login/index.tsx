@@ -1,7 +1,6 @@
 import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Form,
   FormControl,
@@ -22,7 +21,9 @@ export default function LoginComponent() {
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
+  // @ts-ignore
+  const [error, setError] = useState<string | null>(null); 
+  // @ts-ignore
   const [isPending, startTransition] = useTransition();
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     console.log("Login attempted with:", values);

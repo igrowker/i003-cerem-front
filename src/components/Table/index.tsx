@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import {
   ColumnDef,
@@ -13,7 +11,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
-import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { Search } from "../ui/search";
 

@@ -4,7 +4,7 @@ import { useClients } from "@/hooks/Client/useClients";
 import { getColumns } from "./columns";
 
 export default function ClientsComponent() {
-  const { isLoading, clients, error, isError, isFetching } = useClients({
+  const { clients } = useClients({
     auth: true,
     fetchClients: true,
   });

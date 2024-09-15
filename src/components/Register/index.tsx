@@ -19,7 +19,9 @@ export default function RegisterComponent() {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
   });
+  // @ts-ignore
   const [error, setError] = useState<string | null>(null);
+  // @ts-ignore
   const [isPending, startTransition] = useTransition();
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     console.log("Register attempted with:", values);

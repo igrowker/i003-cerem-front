@@ -14,6 +14,7 @@ import {
 
 export default function DashboardComponent() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
+  // @ts-ignore
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="flex-1 overflow-auto">
