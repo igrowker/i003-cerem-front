@@ -14,11 +14,17 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import TasksPage from "./pages/Tasks";
 import CalendarPage from "./pages/Calendar";
 import ClientsPage from "./pages/Clients";
-
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 // Componente que se encarga de verificar si mostrar o no el NavComponent y el Sidebar
 function LayoutWithNavAndSidebar() {
   const location = useLocation();
-  const noNavRoutes = ["/dashboard", "/campañas", "/calendarios", "/tareas", "/clientes"];
+  const noNavRoutes = [
+    "/dashboard",
+    "/campañas",
+    "/calendarios",
+    "/tareas",
+    "/clientes",
+  ];
   const hideNav = noNavRoutes.includes(location.pathname);
 
   return (
@@ -36,9 +42,12 @@ function LayoutWithNavAndSidebar() {
             <Route path="/inicio" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             {/* <Route path="/campañas" element={<CampaignsPage />} />*/}
-            <Route path="/calendarios" element={<CalendarPage />} /> 
-            <Route path="/clientes" element={<ClientsPage />} /> 
+            <Route path="/calendarios" element={<CalendarPage />} />
+            <Route path="/clientes" element={<ClientsPage />} />
             <Route path="/tareas" element={<TasksPage />} />
+
+            {/* Ruta para manejar páginas no encontradas */}
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>
       </div>
