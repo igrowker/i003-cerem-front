@@ -11,10 +11,11 @@ import {
   Menu,
   PlusCircle,
 } from "lucide-react";
+import { Burger } from "../Sidebar/Burger";
 
 export default function DashboardComponent() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
-  // @ts-ignore
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="flex-1 overflow-auto">
@@ -25,12 +26,12 @@ export default function DashboardComponent() {
             variant="outline"
             size="icon"
             className="lg:hidden text-[#08121F] border-[#779EBF]"
-            onClick={() => setSidebarOpen(true)}
+            onClick={() => setSidebarOpen(!sidebarOpen)}
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 " />
           </Button>
         </div>
-
+        {sidebarOpen && <Burger isOpen={sidebarOpen} />}
         {/* Resumen */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card className="bg-[#F7FAFC] border-[#779EBF]">
@@ -42,7 +43,7 @@ export default function DashboardComponent() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-[#08121F]">12/20</div>
-              <Progress value={60} className="mt-2"  />
+              <Progress value={60} className="mt-2" />
             </CardContent>
           </Card>
           <Card className="bg-[#F7FAFC] border-[#779EBF]">
