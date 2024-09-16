@@ -15,6 +15,8 @@ import TasksPage from "./pages/Tasks";
 import CalendarPage from "./pages/Calendar";
 import ClientsPage from "./pages/Clients";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import "./i18n/i18n";
+
 // Componente que se encarga de verificar si mostrar o no el NavComponent y el Sidebar
 function LayoutWithNavAndSidebar() {
   const location = useLocation();

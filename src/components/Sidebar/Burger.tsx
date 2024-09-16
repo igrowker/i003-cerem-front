@@ -5,7 +5,7 @@ import { ButtonSideBarBurger } from "./ButtonSidebar";
 
 export const Burger = (isOpen: boolean) => {
   return (
-    <div className="w-full min-h-[600px] z-20 flex justify-end absolute">
+    <div className="w-full min-h-[600px] z-20 flex justify-end absolute lg:hidden">
       <div className="w-2/5  bg-cyan-900 flex flex-col items-center justify-between">
         <div className="w-3/4">
           <div className="w-full h-[200px] flex flex-col justify-evenly items-end">

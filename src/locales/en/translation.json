@@ -1,0 +1,9 @@
+{
+  "inicio": "home",
+  "calendario": "calendar",
+  "tareas": "tasks",
+  "clientes": "clients",
+  "usuario": "user",
+  "configuracion": "settings",
+  "cerrar_sesion": "sign out"
+}

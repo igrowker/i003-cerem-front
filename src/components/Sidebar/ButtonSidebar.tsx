@@ -18,7 +18,7 @@ export const ButtonSideBar: React.FC<ButtonSideBarProps> = ({
   return (
     <Link to={url}>
       {isOpen ? (
-        <span className="w-full h-10 flex items-center text-xl font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
+        <span className="w-full h-10 flex items-center text-xl font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg capitalize">
           {icon}
           {text}
         </span>
