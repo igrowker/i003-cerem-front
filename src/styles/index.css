@@ -66,7 +66,7 @@
     @apply bg-background text-foreground;
     font-family: "Lato", sans-serif;
     background-size: cover;
-    background-image: url("/src/assets/BackgroundHero.svg");
+    background-image: url("/assets/BackgroundHero.svg");
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh; 
@@ -75,7 +75,7 @@
 @layer base {
   .integrations {
     @apply bg-background text-foreground;
-    background-image: url("/src/assets/BackgroundIntegrations.svg"); 
+    background-image: url("/assets/BackgroundIntegrations.svg"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
