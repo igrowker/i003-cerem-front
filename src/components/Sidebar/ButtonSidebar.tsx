@@ -18,9 +18,30 @@ export const ButtonSideBar: React.FC<ButtonSideBarProps> = ({
   return (
     <Link to={url}>
       {isOpen ? (
-        <span className="w-full h-10 flex items-center text-xl font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
+        <span className="w-full h-10 flex items-center text-xl font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg capitalize">
           {icon}
           {text}
+        </span>
+      ) : (
+        <span className="w-full h-10 flex items-center justify-center text-2xl  font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
+          {icon}
+        </span>
+      )}
+    </Link>
+  );
+};
+export const ButtonSideBarBurger: React.FC<ButtonSideBarProps> = ({
+  text,
+  icon,
+  isOpen,
+  url,
+}) => {
+  return (
+    <Link to={url}>
+      {isOpen ? (
+        <span className="w-full h-10 flex items-center  font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
+          {text}
+          {icon}
         </span>
       ) : (
         <span className="w-full h-10 flex items-center justify-center text-2xl  font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
