@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -8,7 +8,6 @@ import {
   CheckCircle,
   Clock,
   ListTodo,
-  Menu,
   PlusCircle,
 } from "lucide-react";
 import { Burger } from "../Sidebar/Burger";
@@ -16,22 +15,13 @@ import { Burger } from "../Sidebar/Burger";
 export default function DashboardComponent() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-          <Button
-            variant="outline"
-            size="icon"
-            className="lg:hidden text-[#08121F] border-[#779EBF]"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            <Menu className="h-6 w-6 " />
-          </Button>
+          <Burger />
         </div>
-        {sidebarOpen && <Burger isOpen={sidebarOpen} />}
         {/* Resumen */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card className="bg-[#F7FAFC] border-[#779EBF]">
