@@ -1,0 +1,1 @@
+Esta carpeta contiene hooks personalizados de React que encapsulan lógica reutilizable y ofrecen una manera de manejar el estado y los efectos secundarios en la aplicación. Estos hooks pueden estar relacionados con el manejo de la autenticación, la lógica de formularios, o cualquier otra funcionalidad que requiera mantenerse fuera de los componentes.

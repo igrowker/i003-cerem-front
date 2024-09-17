@@ -1,0 +1,1 @@
+Esta carpeta contiene definiciones de tipos TypeScript que se utilizan en toda la aplicación para proporcionar tipado estático. Esto incluye interfaces y tipos para props de componentes, respuestas de API, estados, y más. Asegura que la aplicación sea consistente en términos de datos y reduce errores de tipado.
