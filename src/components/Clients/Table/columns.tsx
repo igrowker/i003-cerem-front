@@ -4,7 +4,8 @@ import { Button } from "../../ui/button";
 import DeleteClientDialog from "../Delete";
 
 export const getColumns = (
-  onEditClient: (client: Client) => void
+  onEditClient: (client: Client) => void,
+  t: (key: string) => string
 ): ColumnDef<Client>[] => {
   const columns: ColumnDef<Client>[] = [
     {
@@ -17,7 +18,7 @@ export const getColumns = (
     },
     {
       accessorKey: "name",
-      header: "Nombre",
+      header: t("nombre"),
       cell: ({ row }) => (
         <div className="flex flex-col ml-2">
           <p className="text-sm font-medium">{row.original.name}</p>
@@ -38,7 +39,12 @@ export const getColumns = (
       header: " ",
       cell: ({ row }) => (
         <div className="flex items-end justify-end gap-2">
-          <Button onClick={() => onEditClient(row.original)} className="bg-gray-700 hover:bg-gray-600">Editar</Button>
+          <Button
+            onClick={() => onEditClient(row.original)}
+            className="bg-gray-700 hover:bg-gray-600 capitalize"
+          >
+            {t("editar")}
+          </Button>
           <DeleteClientDialog idClient={row.original.id} />
         </div>
       ),

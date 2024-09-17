@@ -11,8 +11,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { Search } from "../ui/search";
+import { useTranslation } from "react-i18next";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -32,7 +32,6 @@ export function TableComponent<TData, TValue>({
   data,
   showSearch = false,
   searchPlaceholder = "",
-  addLinkPath = "/",
   addLinkText = "Agregar",
   customFilter,
   onAddClick,
@@ -42,6 +41,7 @@ export function TableComponent<TData, TValue>({
     []
   );
   const [searchInput, setSearchInput] = React.useState("");
+  const { t } = useTranslation();
   const filteredData = React.useMemo(() => {
     if (customFilter && searchInput) {
       return data.filter((item) => customFilter(item, searchInput));
@@ -81,7 +81,7 @@ export function TableComponent<TData, TValue>({
           <div className="ml-4">
             {onAddClick && (
               <Button
-                className="bg-cyan-900 hover:bg-cyan-700 text-white"
+                className="bg-cyan-900 hover:bg-cyan-700 text-white capitalize"
                 onClick={onAddClick}
               >
                 {addLinkText}
@@ -140,7 +140,7 @@ export function TableComponent<TData, TValue>({
                     colSpan={columns.length}
                     className="py-10 text-center text-gray-500"
                   >
-                    No se encuentran resultados con ese criterio de búsqueda.
+                    {t("noData")}
                   </td>
                 </tr>
               )}

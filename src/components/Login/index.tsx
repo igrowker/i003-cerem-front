@@ -15,17 +15,20 @@ import { z } from "zod";
 import { loginSchema } from "@/validators/login.schema";
 import { PasswordInput } from "../ui/password-input";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function LoginComponent() {
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const { t } = useTranslation();
+  const schemaLogin = loginSchema(t);
+  const form = useForm<z.infer<typeof schemaLogin>>({
+    resolver: zodResolver(schemaLogin),
   });
   const navigate = useNavigate();
   // @ts-ignore
   const [error, setError] = useState<string | null>(null); 
   // @ts-ignore
   const [isPending, startTransition] = useTransition();
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
+  async function onSubmit(values: z.infer<typeof schemaLogin>) {
     console.log("Login attempted with:", values);
     navigate("/dashboard");
   }

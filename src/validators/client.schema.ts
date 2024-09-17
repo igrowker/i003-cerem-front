@@ -1,13 +1,14 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-export const clientSchema = z.object({
-    name: z.string({
-        required_error: 'Nombre es requerido',
-    }),
-    username: z.string({
-        required_error: 'Usuario es requerido',
-    }),
-    email: z.string({
-        required_error: 'Email es requerido',
-    })
-});
+export const clientSchema = (t: (key: string) => string) =>
+    z.object({
+        name: z.string({
+            required_error: t('nombreRequerido'),
+        }),
+        username: z.string({
+            required_error: t('usuarioRequerido'),
+        }),
+        email: z.string({
+            required_error: t('emailRequerido'),
+        }).email(t('emailInvalido')),
+    });

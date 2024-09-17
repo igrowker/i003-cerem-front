@@ -14,16 +14,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { PasswordInput } from "../ui/password-input";
 import { registerSchema } from "@/validators/register.schema";
+import { useTranslation } from "react-i18next";
 
 export default function RegisterComponent() {
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
+  const { t } = useTranslation();
+  const schemaRegister = registerSchema(t);
+  const form = useForm<z.infer<typeof schemaRegister>>({
+    resolver: zodResolver(schemaRegister),
   });
   // @ts-ignore
   const [error, setError] = useState<string | null>(null);
   // @ts-ignore
   const [isPending, startTransition] = useTransition();
-  async function onSubmit(values: z.infer<typeof registerSchema>) {
+  async function onSubmit(values: z.infer<typeof schemaRegister>) {
     console.log("Register attempted with:", values);
   }
 
