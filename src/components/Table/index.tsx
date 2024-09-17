@@ -24,6 +24,7 @@ interface DataTableProps<TData, TValue> {
   searchColumn?: string;
   customFilter?: (data: TData, query: string) => boolean;
   isLoading?: boolean;
+  onAddClick?: () => void;
 }
 
 export function TableComponent<TData, TValue>({
@@ -34,6 +35,7 @@ export function TableComponent<TData, TValue>({
   addLinkPath = "/",
   addLinkText = "Agregar",
   customFilter,
+  onAddClick,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -77,11 +79,14 @@ export function TableComponent<TData, TValue>({
             onChange={handleSearchChange}
           />
           <div className="ml-4">
-            <Link to={addLinkPath}>
-              <Button className="bg-cyan-900 hover:bg-incor-700 text-white">
+            {onAddClick && (
+              <Button
+                className="bg-cyan-900 hover:bg-cyan-700 text-white"
+                onClick={onAddClick}
+              >
                 {addLinkText}
               </Button>
-            </Link>
+            )}
           </div>
         </div>
       )}
