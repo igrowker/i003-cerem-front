@@ -21,6 +21,7 @@ import { Client } from "@/types/Client/Client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { clientSchema } from "@/validators/client.schema";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   isOpen: boolean;
@@ -28,10 +29,13 @@ interface Props {
   client: Client;
 }
 
+
 export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
-  const form = useForm<z.infer<typeof clientSchema>>({
-    resolver: zodResolver(clientSchema),
-    defaultValues: client, 
+  const { t } = useTranslation();
+  const schemaClient = clientSchema(t);
+  const form = useForm<z.infer<typeof schemaClient>>({
+    resolver: zodResolver(schemaClient),
+    defaultValues: client,
   });
 
   useEffect(() => {
@@ -40,7 +44,7 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
     }
   }, [client, isOpen]);
 
-  async function onSubmit(values: z.infer<typeof clientSchema>) {
+  async function onSubmit(values: z.infer<typeof schemaClient>) {
     try {
       console.log(values);
       form.reset();
@@ -53,7 +57,7 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
   const handleDialogChange = (open: boolean) => {
     setIsOpen(open);
     if (!open) {
-      form.reset(); 
+      form.reset();
     }
   };
 
@@ -61,7 +65,9 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
     <Dialog open={isOpen} onOpenChange={handleDialogChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Editar Cliente - {client.name}</DialogTitle>
+          <DialogTitle className="capitalize">
+            {t("editarClient")} - {client.name}
+          </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -70,7 +76,9 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Nombre</FormLabel>
+                  <FormLabel className="text-black capitalize">
+                    {t("nombre")}
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -83,7 +91,9 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Usuario</FormLabel>
+                  <FormLabel className="text-black capitalize">
+                    {t("usuario")}
+                  </FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -105,15 +115,15 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
               )}
             />
             <DialogFooter className="flex items-center justify-between mt-2">
-              <Button variant="outline" onClick={() => setIsOpen(false)}>
-                Cancelar
+              <Button variant="outline" onClick={() => setIsOpen(false)} className="capitalize">
+              {t("cancelar")}
               </Button>
               <Button
                 type="submit"
-                className=" bg-cyan-900 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-md transition duration-300"
+                className=" bg-cyan-900 capitalize hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-md transition duration-300"
                 variant="default"
               >
-                Confirmar
+                {t("confirmar")}
               </Button>
             </DialogFooter>
           </form>
