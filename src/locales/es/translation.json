@@ -5,5 +5,16 @@
   "clientes": "clientes",
   "usuario": "usuario",
   "configuracion": "configuración",
-  "cerrar_sesion": "cerrar sesión"
+  "cerrar_sesion": "cerrar sesión",
+  "nombre": "nombre",
+  "nuevoCliente": "nuevo cliente",
+  "editar": "editar",
+  "eliminar": "eliminar",
+  "confirmar": "confirmar",
+  "cancelar": "cancelar",
+  "buscarCliente": "buscar clientes...",
+  "eliminarClient": "eliminar cliente",
+  "eliminarClientMessage": "¿Estás seguro de que quieres eliminar este cliente?",
+  "eliminarTask": "eliminar tarea",
+  "eliminarTaskMessage": "¿Estás seguro de que quieres eliminar esta tarea?"
 }

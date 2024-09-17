@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useTranslation } from "react-i18next";
 // import { toast } from "sonner";
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
 export default function DeleteClientDialog({ idClient }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggleDialog = () => setIsOpen(!isOpen);
+  const { t } = useTranslation();
   const handleConfirmDelete = async () => {
     try {
       console.log("idClient", idClient);
@@ -36,26 +38,34 @@ export default function DeleteClientDialog({ idClient }: Props) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive" onClick={toggleDialog}>
-          Eliminar
+        <Button
+          variant="destructive"
+          className="capitalize"
+          onClick={toggleDialog}
+        >
+          {t("eliminar")}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Eliminar cliente</DialogTitle>
+          <DialogTitle className="capitalize">
+            {t("eliminarClient")}
+          </DialogTitle>
         </DialogHeader>
-        <DialogDescription>
-          ¿Estás seguro de que quieres eliminar el cliente?
-        </DialogDescription>
+        <DialogDescription>{t("eliminarClientMessage")}</DialogDescription>
         <DialogFooter>
-          <Button variant="outline" onClick={toggleDialog}>
-            Cancelar
+          <Button
+            variant="outline"
+            className="capitalize"
+            onClick={toggleDialog}
+          >
+            {t("cancelar")}
           </Button>
           <Button
-            className="bg-cyan-900 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-md transition duration-300"
+            className="bg-cyan-900 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 capitalize"
             onClick={handleConfirmDelete}
           >
-            Confirmar
+            {t("confirmar")}
           </Button>
         </DialogFooter>
       </DialogContent>
