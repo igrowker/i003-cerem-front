@@ -42,7 +42,7 @@ export const Sidebar: React.FC = () => {
               text="Campaña"
               icon={<MdCampaign className="mr-1" />}
               isOpen={isOpen}
-              url="/campañas"
+              url="/campanas"
             />
 
             <ButtonSideBar
