@@ -6,6 +6,7 @@ import { ButtonSideBar } from "./ButtonSidebar";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { LogoSideBar } from "./LogoSidebar";
+import { MdCampaign } from "react-icons/md";
 
 export const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -35,6 +36,13 @@ export const Sidebar: React.FC = () => {
               icon={<IoIosCalendar className="mr-1" />}
               isOpen={isOpen}
               url="/calendarios"
+            />
+
+            <ButtonSideBar
+              text="Campaña"
+              icon={<MdCampaign className="mr-1" />}
+              isOpen={isOpen}
+              url="/campañas"
             />
 
             <ButtonSideBar
