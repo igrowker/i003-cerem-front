@@ -76,7 +76,7 @@ export default function RegisterComponent() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-black">
-                    Correo Electrónico
+                    Contraseña
                   </FormLabel>
                   <FormControl>
                     <PasswordInput {...field} />
