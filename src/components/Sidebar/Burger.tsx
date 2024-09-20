@@ -75,7 +75,7 @@ export const Burger = () => {
                   text=" Cerrar sesión"
                   icon={<IoMdLogOut className="ml-1" />}
                   isOpen={isOpen}
-                  url="/singout"
+                  url="/iniciar-sesion"
                 />
               </div>
             </div>
