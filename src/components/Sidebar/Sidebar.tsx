@@ -100,7 +100,7 @@ export const Sidebar: React.FC = () => {
             text={t("cerrar_sesion")}
             icon={<IoMdLogOut className="mr-1" />}
             isOpen={isOpen}
-            url="/singout"
+            url="/iniciar-sesion"
           />
         </div>
       </div>

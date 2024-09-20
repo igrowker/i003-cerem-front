@@ -26,5 +26,12 @@
   "emailTomado": "Email is already in use.",
   "usuarioTomado": "User is already in use.",
   "contrasenaRequerida": "Password is required.",
-  "contrasenaConfirmacion": "Passwords do not match."
+  "contrasenaConfirmacion": "Passwords do not match.",
+  "today": "today",
+  "week": "week",
+  "month": "month",
+  "schedule": "schedule",
+  "day": "day",
+  "next": "next",
+  "previous": "previous"
 }

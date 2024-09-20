@@ -26,5 +26,12 @@
   "emailTomado": "El email ya está en uso.",
   "usuarioTomado": "El usuario ya está en uso.",
   "contrasenaRequerida": "La contraseña es requerida.",
-  "contrasenaConfirmacion": "Las contraseñas no coinciden."
+  "contrasenaConfirmacion": "Las contraseñas no coinciden.",
+  "today": "hoy",
+  "week": "semana",
+  "month": "mes",
+  "agenda": "agenda",
+  "day": "día",
+  "next": "siguiente",
+  "previous": "anterior"
 }
