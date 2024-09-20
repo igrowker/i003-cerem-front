@@ -3,6 +3,7 @@ import Patrocinadores from "@/components/Patrocinadores";
 import Integrations from "@/components/Integrations";
 import Features_2 from "@/components/Features_2";
 import Features_1 from "@/components/Features_1";
+import { Footer } from "@/components/Footer/Footer";
 
 const HomePage = () => {
   return (
@@ -16,6 +17,8 @@ const HomePage = () => {
       <div className="flex items-center justify-center w-full integrations">
         <Integrations />
       </div>
+      <div className="w-full h-screen bg-white"></div>
+      <Footer />
     </div>
   );
 };
