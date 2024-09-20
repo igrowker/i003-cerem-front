@@ -1,5 +1,4 @@
 import React from "react";
-import BackgroundFooter from "../../../public/assets/backgroundFooter.png";
 import { FaFacebookF } from "react-icons/fa";
 import { SocialButton } from "../SocialButton/SocialButton";
 import { AiOutlineGlobal } from "react-icons/ai";
@@ -12,7 +11,7 @@ export const Footer: React.FC = () => {
   return (
     <div
       className="w-full bg-cover bg-center min-h-screen flex flex-wrap items-end justify-center"
-      style={{ backgroundImage: `url(${BackgroundFooter})` }}
+      style={{ backgroundImage: "url('/assets/BackgroundFooter.png')" }}
     >
       <div className=" lg:w-3/4 min-h-[500px] flex flex-col md:flex-row justify-center items-center mt-52   ">
         <div className="w-[300px] pr-4 flex flex-col justify-center text-white">
