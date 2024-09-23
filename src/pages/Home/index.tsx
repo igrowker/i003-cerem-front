@@ -17,7 +17,6 @@ const HomePage = () => {
       <div className="flex items-center justify-center w-full integrations">
         <Integrations />
       </div>
-      <div className="w-full h-screen bg-white"></div>
       <Footer />
     </div>
   );
