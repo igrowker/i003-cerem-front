@@ -3,6 +3,8 @@ import Patrocinadores from "@/components/Patrocinadores";
 import Integrations from "@/components/Integrations";
 import Features_2 from "@/components/Features_2";
 import Features_1 from "@/components/Features_1";
+import Articulos from "@/components/Articulos";
+
 import { Footer } from "@/components/Footer/Footer";
 
 const HomePage = () => {
@@ -14,6 +16,7 @@ const HomePage = () => {
       <Patrocinadores />
       <Features_1 />
       <Features_2 />
+      <Articulos />
       <div className="flex items-center justify-center w-full integrations">
         <Integrations />
       </div>
