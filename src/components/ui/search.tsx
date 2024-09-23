@@ -19,7 +19,7 @@ const Search = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
           type="text"
           ref={ref}
-          className="w-full p-2 placeholder:text-muted-foreground  focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full p-2 placeholder:text-muted-foreground  focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 capitalize"
         />
       </div>
     );
