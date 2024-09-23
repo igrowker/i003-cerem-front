@@ -6,9 +6,12 @@ import { ButtonSideBar } from "./ButtonSidebar";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { LogoSideBar } from "./LogoSidebar";
+import { useTranslation } from "react-i18next"; // <--- Importación
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 
 export const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { t } = useTranslation(); // <--- Uso del hook
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -18,33 +21,35 @@ export const Sidebar: React.FC = () => {
     <>
       <div
         className={` ${
-          isOpen ? "w-[300px]" : "w-24"
+          isOpen ? "w-[300px]" : "w-32"
         } transition-all duration-500 ease-in-out} hidden lg:flex   h-screen bg-navy border-r-4  flex-col items-center justify-between `}
       >
         <div className="w-3/4">
+          <LanguageSwitcher />
+
           <LogoSideBar isOpen={isOpen} url="/dashboard" />
           <div className="w-full h-[200px] flex flex-col justify-evenly ">
             <ButtonSideBar
-              text="Inicio"
+              text={t("inicio")}
               icon={<AiOutlineHome className="mr-1" />}
               isOpen={isOpen}
               url="/dashboard"
             />
             <ButtonSideBar
-              text="Calendario"
+              text={t("calendario")}
               icon={<IoIosCalendar className="mr-1" />}
               isOpen={isOpen}
               url="/calendarios"
             />
 
             <ButtonSideBar
-              text="Tareas"
+              text={t("tareas")}
               icon={<FaListUl className="mr-1" />}
               isOpen={isOpen}
               url="/tareas"
             />
             <ButtonSideBar
-              text="Clientes"
+              text={t("clientes")}
               icon={<FaUsers className="mr-1" />}
               isOpen={isOpen}
               url="/clientes"
@@ -67,8 +72,12 @@ export const Sidebar: React.FC = () => {
                 className="w-8 h-8 rounded-full"
               />
               <div>
-                <p className="text-base font-medium text-[#779EBF]">Usuario</p>
-                <p className="text-base text-cyanDark">usuario@ejemplo.com</p>
+                <p className="text-base font-medium text-[#779EBF]">
+                  {t("usuario")}
+                </p>
+                <p className="text-base text-cyanDark">
+                  {t("usuario")}@ejemplo.com
+                </p>
               </div>
             </div>
           ) : (
@@ -82,16 +91,16 @@ export const Sidebar: React.FC = () => {
           )}
 
           <ButtonSideBar
-            text="Configuración"
+            text={t("configuracion")}
             icon={<IoMdSettings className="mr-1" />}
             isOpen={isOpen}
             url="/configuración"
           />
           <ButtonSideBar
-            text=" Cerrar sesión"
+            text={t("cerrar_sesion")}
             icon={<IoMdLogOut className="mr-1" />}
             isOpen={isOpen}
-            url="/singout"
+            url="/iniciar-sesion"
           />
         </div>
       </div>

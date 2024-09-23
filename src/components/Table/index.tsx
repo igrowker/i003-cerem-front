@@ -11,8 +11,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { Search } from "../ui/search";
+import { useTranslation } from "react-i18next";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -24,6 +24,7 @@ interface DataTableProps<TData, TValue> {
   searchColumn?: string;
   customFilter?: (data: TData, query: string) => boolean;
   isLoading?: boolean;
+  onAddClick?: () => void;
 }
 
 export function TableComponent<TData, TValue>({
@@ -31,15 +32,16 @@ export function TableComponent<TData, TValue>({
   data,
   showSearch = false,
   searchPlaceholder = "",
-  addLinkPath = "/",
   addLinkText = "Agregar",
   customFilter,
+  onAddClick,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
   const [searchInput, setSearchInput] = React.useState("");
+  const { t } = useTranslation();
   const filteredData = React.useMemo(() => {
     if (customFilter && searchInput) {
       return data.filter((item) => customFilter(item, searchInput));
@@ -77,11 +79,14 @@ export function TableComponent<TData, TValue>({
             onChange={handleSearchChange}
           />
           <div className="ml-4">
-            <Link to={addLinkPath}>
-              <Button className="bg-cyan-900 hover:bg-incor-700 text-white">
+            {onAddClick && (
+              <Button
+                className="bg-cyan-900 hover:bg-cyan-700 text-white capitalize"
+                onClick={onAddClick}
+              >
                 {addLinkText}
               </Button>
-            </Link>
+            )}
           </div>
         </div>
       )}
@@ -135,7 +140,7 @@ export function TableComponent<TData, TValue>({
                     colSpan={columns.length}
                     className="py-10 text-center text-gray-500"
                   >
-                    No se encuentran resultados con ese criterio de búsqueda.
+                    {t("noData")}
                   </td>
                 </tr>
               )}

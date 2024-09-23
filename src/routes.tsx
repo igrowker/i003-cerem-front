@@ -14,7 +14,9 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import TasksPage from "./pages/Tasks";
 import CalendarPage from "./pages/Calendar";
 import ClientsPage from "./pages/Clients";
-import ErrorPage from "./components/ErrorPage/ErrorPage";
+import "./i18n/i18n";
+import { Error } from "./pages/Error/Error";
+
 // Componente que se encarga de verificar si mostrar o no el NavComponent y el Sidebar
 function LayoutWithNavAndSidebar() {
   const location = useLocation();
@@ -47,7 +49,7 @@ function LayoutWithNavAndSidebar() {
             <Route path="/tareas" element={<TasksPage />} />
 
             {/* Ruta para manejar páginas no encontradas */}
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </div>
       </div>

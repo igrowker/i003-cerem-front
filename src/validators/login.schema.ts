@@ -1,10 +1,11 @@
 import { z } from 'zod';
 
-export const loginSchema = z.object({
+export const loginSchema = (t: (key: string) => string) => 
+  z.object({
     email: z.string({
-        required_error: 'Email es requerido',
+      required_error: t('emailRequerido'),
     }),
     password: z.string({
-        required_error: 'Contraseña es requerida',
+      required_error: t('contrasenaRequerida'),
     }),
-});
+  });
