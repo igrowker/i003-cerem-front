@@ -16,10 +16,10 @@ const HomePage = () => {
       <Patrocinadores />
       <Features_1 />
       <Features_2 />
-      <Articulos />
       <div className="flex items-center justify-center w-full integrations">
         <Integrations />
       </div>
+      <Articulos />
       <Footer />
     </div>
   );

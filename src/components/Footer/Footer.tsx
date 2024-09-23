@@ -13,8 +13,10 @@ export const Footer: React.FC = () => {
     <>
       <InvitationRegister />
       <div
-        className="w-full bg-cover bg-center min-h-screen flex flex-wrap items-end justify-center z-50"
-        style={{ backgroundImage: "url('/assets/BackgroundFooter.png')" }}
+        className="w-full bg-cover bg-center md:min-h-screen flex flex-wrap items-end justify-center  bg-sky-100"
+        style={{
+          backgroundImage: "url('/assets/BackgroundFooter.png')",
+        }}
       >
         <div className=" lg:w-3/4 min-h-[500px] flex flex-col md:flex-row justify-center items-center mt-52   ">
           <div className="w-[300px] pr-4 flex flex-col justify-center text-white">
