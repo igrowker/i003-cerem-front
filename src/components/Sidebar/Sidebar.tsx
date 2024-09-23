@@ -44,7 +44,7 @@ export const Sidebar: React.FC = () => {
             />
 
             <ButtonSideBar
-              text="Campaña"
+              text={t("campaña")}
               icon={<MdCampaign className="mr-1" />}
               isOpen={isOpen}
               url="/campanas"
