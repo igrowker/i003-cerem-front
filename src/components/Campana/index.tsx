@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, useRef, useEffect, useTransition } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Loader2, Send, Lightbulb, MessageSquare, Bot } from "lucide-react";
+import { Loader2, Send, Lightbulb, MessageSquare } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslation } from "react-i18next";
 
