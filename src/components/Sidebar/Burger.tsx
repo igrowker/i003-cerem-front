@@ -5,10 +5,13 @@ import { ButtonSideBarBurger } from "./ButtonSidebar";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
+import { useTranslation } from "react-i18next";
+import { MdCampaign } from "react-icons/md";
+import { BsClipboardDataFill } from "react-icons/bs";
 
 export const Burger = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { t } = useTranslation();
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -28,26 +31,37 @@ export const Burger = () => {
               <div className="w-full h-[200px] flex flex-col justify-evenly items-center md:items-end">
                 {/* Botones con íconos */}
                 <ButtonSideBarBurger
-                  text="Inicio"
+                  text={t("inicio")}
                   icon={<AiOutlineHome className="ml-1" />}
                   isOpen={isOpen}
                   url="/dashboard"
                 />
                 <ButtonSideBarBurger
-                  text="Calendario"
+                  text={t("calendario")}
                   icon={<IoIosCalendar className="ml-1" />}
                   isOpen={isOpen}
                   url="/calendarios"
                 />
-
                 <ButtonSideBarBurger
-                  text="Tareas"
+                  text={t("campaña")}
+                  icon={<MdCampaign className="ml-1" />}
+                  isOpen={isOpen}
+                  url="/calendarios"
+                />
+                <ButtonSideBarBurger
+                  text={t("estadisticas")}
+                  icon={<BsClipboardDataFill className="ml-1" />}
+                  isOpen={isOpen}
+                  url="/calendarios"
+                />
+                <ButtonSideBarBurger
+                  text={t("tareas")}
                   icon={<FaListUl className="ml-1" />}
                   isOpen={isOpen}
                   url="/tareas"
                 />
                 <ButtonSideBarBurger
-                  text="Clientes"
+                   text={t("clientes")}
                   icon={<FaUsers className="ml-1" />}
                   isOpen={isOpen}
                   url="/clientes"
@@ -66,13 +80,13 @@ export const Burger = () => {
               <div className="w-full flex flex-col justify-end items-center md:items-end mb-3">
                 {/* Botones adicionales */}
                 <ButtonSideBarBurger
-                  text="Configuración"
+                   text={t("configuracion")}
                   icon={<IoMdSettings className="ml-1" />}
                   isOpen={isOpen}
                   url="/configuración"
                 />
                 <ButtonSideBarBurger
-                  text=" Cerrar sesión"
+                   text={t("cerrar_sesion")}
                   icon={<IoMdLogOut className="ml-1" />}
                   isOpen={isOpen}
                   url="/iniciar-sesion"

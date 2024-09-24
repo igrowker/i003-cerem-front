@@ -9,6 +9,7 @@ import { LogoSideBar } from "./LogoSidebar";
 import { MdCampaign } from "react-icons/md";
 import { useTranslation } from "react-i18next"; // <--- Importación
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { BsClipboardDataFill } from "react-icons/bs";
 
 export const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -48,6 +49,13 @@ export const Sidebar: React.FC = () => {
               icon={<MdCampaign className="mr-1" />}
               isOpen={isOpen}
               url="/campanas"
+            />
+
+            <ButtonSideBar
+              text={t("estadisticas")}
+              icon={<BsClipboardDataFill className="mr-1" />}
+              isOpen={isOpen}
+              url="/estadisticas"
             />
 
             <ButtonSideBar

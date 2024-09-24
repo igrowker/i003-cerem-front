@@ -39,7 +39,7 @@ export const ButtonSideBarBurger: React.FC<ButtonSideBarProps> = ({
   return (
     <Link to={url}>
       {isOpen ? (
-        <span className="w-full h-10 flex items-center  font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
+        <span className="w-full h-10 flex items-center capitalize font-medium text-blueGray hover:bg-cyanDark hover:text-lightGray p-2 rounded-lg">
           {text}
           {icon}
         </span>
