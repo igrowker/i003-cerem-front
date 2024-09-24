@@ -2,6 +2,7 @@
   "inicio": "inicio",
   "calendario": "calendario",
   "tareas": "tareas",
+  "campaña": "campaña",
   "clientes": "clientes",
   "usuario": "usuario",
   "configuracion": "configuración",
@@ -30,8 +31,10 @@
   "today": "hoy",
   "week": "semana",
   "month": "mes",
-  "agenda": "agenda",
+  "schedule": "agenda",
   "day": "día",
   "next": "siguiente",
-  "previous": "anterior"
+  "previous": "anterior",
+  "estadisticas": "estadísticas",
+  "marketing-statistics": "Estadísticas de Campañas de Marketing"
 }

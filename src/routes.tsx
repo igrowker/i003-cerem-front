@@ -17,13 +17,16 @@ import ClientsPage from "./pages/Clients";
 import "./i18n/i18n";
 import { Error } from "./pages/Error/Error";
 
+import CampanaPage from "./pages/Campana";
+import EstadisticasPage from "./pages/Estadisticas";
 // Componente que se encarga de verificar si mostrar o no el NavComponent y el Sidebar
 function LayoutWithNavAndSidebar() {
   const location = useLocation();
   const noNavRoutes = [
     "/dashboard",
-    "/campañas",
+    "/campanas",
     "/calendarios",
+    "/estadisticas",
     "/tareas",
     "/clientes",
   ];
@@ -43,10 +46,11 @@ function LayoutWithNavAndSidebar() {
             <Route path="/" element={<Navigate to="/inicio" />} />
             <Route path="/inicio" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            {/* <Route path="/campañas" element={<CampaignsPage />} />*/}
+            <Route path="/estadisticas" element={<EstadisticasPage />} />
             <Route path="/calendarios" element={<CalendarPage />} />
             <Route path="/clientes" element={<ClientsPage />} />
             <Route path="/tareas" element={<TasksPage />} />
+            <Route path="/campanas" element={<CampanaPage />} />
 
             {/* Ruta para manejar páginas no encontradas */}
             <Route path="*" element={<Error />} />
