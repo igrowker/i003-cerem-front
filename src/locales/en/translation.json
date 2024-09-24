@@ -34,5 +34,7 @@
   "schedule": "schedule",
   "day": "day",
   "next": "next",
-  "previous": "previous"
+  "previous": "previous",
+  "estadisticas": "statistics",
+  "marketing-statistics": "Marketing Campaign Statistics"
 }
