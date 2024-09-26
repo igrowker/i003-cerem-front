@@ -20,7 +20,7 @@ const TasksPage = () => {
     fetchTareas();
   }, []);
   return (
-    <div className="mx-auto container">
+    <div className="mx-auto h-screen container overflow-auto">
       <TasksComponent />
       <NotesComponent />
     </div>
