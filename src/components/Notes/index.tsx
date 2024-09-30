@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Trash2Icon, PencilIcon } from "lucide-react";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 type Note = {
   id: number;
@@ -20,6 +21,7 @@ export default function NotesComponent() {
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteContent, setNewNoteContent] = useState("");
   const [editingNoteId, setEditingNoteId] = useState<number | null>(null);
+  const { t } = useTranslation(); //
 
   const addNote = () => {
     if (newNoteTitle || newNoteContent) {
@@ -56,44 +58,46 @@ export default function NotesComponent() {
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">Notas</h1>
+          <h1 className="text-3xl font-bold text-white capitalize">
+            {t("notas")}
+          </h1>
         </div>
 
         <Card className="w-full  mx-auto shadow-lg">
-          <CardHeader>
-            {/* <CardTitle className="text-2xl font-bold">
-                Tareas y Eventos
-              </CardTitle> */}
-          </CardHeader>
+          <CardHeader></CardHeader>
           <CardContent>
             <div className="grid gap-4">
-              <Label htmlFor="note-title">Título de la Nota</Label>
+              <Label htmlFor="note-title" className="capitalize">
+                {t("título de la nota")}
+              </Label>
               <Input
                 id="note-title"
                 value={newNoteTitle}
                 onChange={(e) => setNewNoteTitle(e.target.value)}
-                placeholder="Título"
+                placeholder={t("titulo")}
                 className="mb-2"
               />
-              <Label htmlFor="note-content">Contenido</Label>
+              <Label htmlFor="note-content" className="capitalize">
+                {t("contenido")}
+              </Label>
               <Textarea
                 id="note-content"
                 value={newNoteContent}
                 onChange={(e) => setNewNoteContent(e.target.value)}
-                placeholder="Escribe tu nota aquí..."
+                placeholder={t("escribe tu nota aquí")}
                 className="mb-2"
               />
               <Button
                 onClick={addNote}
                 className="ml-auto flex items-center justify-center bg-cyanDark text-white hover:bg-cyan-900"
               >
-                Agregar Nota
+                {t("agregar nota")}
               </Button>
             </div>
             <ScrollArea className="h-[200px] rounded-md border mt-2">
               {notes.length === 0 ? (
                 <p className="text-center text-muted-foreground p-4">
-                  No hay notas guardadas.
+                  {t("no hay notas guardadas")}
                 </p>
               ) : (
                 <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
