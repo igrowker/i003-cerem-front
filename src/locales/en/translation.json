@@ -36,5 +36,16 @@
   "next": "next",
   "previous": "previous",
   "estadisticas": "statistics",
-  "marketing-statistics": "Marketing Campaign Statistics"
+  "marketing-statistics": "Marketing Campaign Statistics",
+  "titulo": "Title",
+  "eventos": "events",
+  "actualizar": "update",
+  "agregar": "add",
+  "sincronizar con Google Calendar": "Sync with Google Calendar",
+  "notas": "notes",
+  "título de la nota": "Note title",
+  "contenido": "content",
+  "agregar nota": "add note",
+  "no hay notas guardadas": "no notes saved",
+  "escribe tu nota aquí": "Write your note here"
 }

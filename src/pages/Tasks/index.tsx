@@ -4,8 +4,6 @@ import TareasService from "../../services/TareasService";
 import { useEffect } from "react";
 
 const TasksPage = () => {
-  // const [tareas, setTareas] = useState<string[]>([]);
-
   useEffect(() => {
     const fetchTareas = async () => {
       try {
