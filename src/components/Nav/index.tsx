@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const NavComponent = () => {
   return (
     <header className="container mx-auto px-1 py-2 flex justify-between items-center">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center  space-x-2">
         <img src="/assets/isotipo.svg" alt="Logo" className="w-16 h-16" />
         <img src="/assets/logotipo_w.svg" alt="Logo" className="w-16 h-16" />
       </div>
