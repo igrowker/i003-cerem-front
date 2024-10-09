@@ -7,8 +7,11 @@ import { FaGoogle } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { helpCenterV2Array, pagesArray, utilityPagesArray } from "./pagesArray";
 import { InvitationRegister } from "../InvitationRegister/InvitationRegister";
+import { useTranslation } from "react-i18next";
 
 export const Footer: React.FC = () => {
+  const { t } = useTranslation("footer");
+
   return (
     <>
       <InvitationRegister />
@@ -20,10 +23,13 @@ export const Footer: React.FC = () => {
       >
         <div className=" lg:w-3/4 min-h-[500px] flex flex-col md:flex-row justify-center items-center mt-52   ">
           <div className="w-[300px] pr-4 flex flex-col justify-center text-white">
-            <h2 className=" text-xl lg:text-2xl font-bold mb-2">Saasly</h2>
+            <h2 className=" text-xl lg:text-2xl  mb-2 capitalize tracking-wider">
+              cerem
+            </h2>
             <p className="text-sm mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam ut
-              id nisl tellus rhoncus, imperdiet
+              {t(
+                "Gestiona campañas, clientes y tareas desde una plataforma integrada con IA, diseñada para emprendedores de marketing"
+              )}
             </p>
             <div className="flex space-x-4 ">
               <SocialButton

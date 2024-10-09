@@ -4,8 +4,6 @@ import TareasService from "../../services/TareasService";
 import { useEffect } from "react";
 
 const TasksPage = () => {
-  // const [tareas, setTareas] = useState<string[]>([]);
-
   useEffect(() => {
     const fetchTareas = async () => {
       try {
@@ -20,7 +18,7 @@ const TasksPage = () => {
     fetchTareas();
   }, []);
   return (
-    <div className="mx-auto container">
+    <div className="mx-auto h-screen container overflow-auto">
       <TasksComponent />
       <NotesComponent />
     </div>

@@ -22,6 +22,7 @@ export default function NotesComponent() {
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteContent, setNewNoteContent] = useState("");
   const [editingNoteId, setEditingNoteId] = useState<number | null>(null);
+  const { t } = useTranslation(); //
 
   const addNote = () => {
     if (newNoteTitle || newNoteContent) {
@@ -64,27 +65,31 @@ export default function NotesComponent() {
         </div>
 
         <Card className="w-full  mx-auto shadow-lg">
-          <CardHeader>
-            {/* <CardTitle className="text-2xl font-bold">
-                Tareas y Eventos
-              </CardTitle> */}
-          </CardHeader>
+          <CardHeader></CardHeader>
           <CardContent>
             <div className="grid gap-4">
               <Label htmlFor="note-title" className="capitalize"> {t("note_title")}</Label>
+
               <Input
                 id="note-title"
                 value={newNoteTitle}
                 onChange={(e) => setNewNoteTitle(e.target.value)}
+
                 placeholder={t("note_title")}
                 className="mb-2"
               />
               <Label htmlFor="note-content" className="capitalize"> {t("contenido")}</Label>
+
+                placeholder={t("titulo")}
+                className="mb-2"
+              />
               <Textarea
                 id="note-content"
                 value={newNoteContent}
                 onChange={(e) => setNewNoteContent(e.target.value)}
+
                 placeholder={t("contenido")}
+
                 className="mb-2"
               />
               <Button
@@ -92,6 +97,7 @@ export default function NotesComponent() {
                 className="ml-auto flex items-center justify-center bg-cyanDark text-white hover:bg-cyan-900 capitalize"
               >
                 {t("newNote")}
+
               </Button>
             </div>
             <ScrollArea className="h-[200px] rounded-md border mt-2">
