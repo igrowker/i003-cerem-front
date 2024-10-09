@@ -1,7 +1,11 @@
+import axiosInstance from "@/services/axiosConfig";
 import { Client } from "@/types/Client/Client";
-import axios from "axios";
 
 export const getAllClients = async (): Promise<Client[]> => {
-    const { data } = await axios.get<Client[]>(`https://jsonplaceholder.typicode.com/users`);
-    return data;
+    try {
+        const { data } = await axiosInstance.get<Client[]>(`/clientes`);
+        return data;
+    } catch (error) {
+        throw error;
+    }
 }
