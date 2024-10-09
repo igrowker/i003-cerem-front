@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Send, Lightbulb, MessageSquare } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslation } from "react-i18next";
+import { Burger } from "../Sidebar/Burger";
 
 type Message = {
   role: "user" | "bot";
@@ -91,6 +92,7 @@ export default function CampanaComponent() {
           <h1 className="text-3xl font-bold text-white capitalize">
             {t("campaña")}
           </h1>
+          <Burger />
         </div>
 
         <Card>

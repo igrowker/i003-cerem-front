@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Trash2Icon, PencilIcon } from "lucide-react";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 type Note = {
   id: number;
@@ -16,6 +17,7 @@ type Note = {
 };
 
 export default function NotesComponent() {
+  const { t } = useTranslation();
   const [notes, setNotes] = useState<Note[]>([]);
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteContent, setNewNoteContent] = useState("");
@@ -56,7 +58,9 @@ export default function NotesComponent() {
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">Notas</h1>
+          <h1 className="text-3xl font-bold text-white capitalize">
+            {t("note")}
+          </h1>
         </div>
 
         <Card className="w-full  mx-auto shadow-lg">
@@ -67,33 +71,33 @@ export default function NotesComponent() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
-              <Label htmlFor="note-title">Título de la Nota</Label>
+              <Label htmlFor="note-title" className="capitalize"> {t("note_title")}</Label>
               <Input
                 id="note-title"
                 value={newNoteTitle}
                 onChange={(e) => setNewNoteTitle(e.target.value)}
-                placeholder="Título"
+                placeholder={t("note_title")}
                 className="mb-2"
               />
-              <Label htmlFor="note-content">Contenido</Label>
+              <Label htmlFor="note-content" className="capitalize"> {t("contenido")}</Label>
               <Textarea
                 id="note-content"
                 value={newNoteContent}
                 onChange={(e) => setNewNoteContent(e.target.value)}
-                placeholder="Escribe tu nota aquí..."
+                placeholder={t("contenido")}
                 className="mb-2"
               />
               <Button
                 onClick={addNote}
-                className="ml-auto flex items-center justify-center bg-cyanDark text-white hover:bg-cyan-900"
+                className="ml-auto flex items-center justify-center bg-cyanDark text-white hover:bg-cyan-900 capitalize"
               >
-                Agregar Nota
+                {t("newNote")}
               </Button>
             </div>
             <ScrollArea className="h-[200px] rounded-md border mt-2">
               {notes.length === 0 ? (
-                <p className="text-center text-muted-foreground p-4">
-                  No hay notas guardadas.
+                <p className="text-center text-muted-foreground p-4 capitalize">
+                  {t("notasNoGuardadas")}
                 </p>
               ) : (
                 <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -115,8 +119,11 @@ export default function NotesComponent() {
                             }
                             className="mb-2"
                           />
-                          <Button onClick={() => setEditingNoteId(null)}>
-                            Guardar
+                          <Button
+                            onClick={() => setEditingNoteId(null)}
+                            className="capitalize"
+                          >
+                            {t("save")}
                           </Button>
                         </>
                       ) : (

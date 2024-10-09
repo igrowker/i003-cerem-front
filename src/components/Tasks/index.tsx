@@ -10,6 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Burger } from "../Sidebar/Burger";
+import { useTranslation } from "react-i18next";
 
 type Item = {
   id: number;
@@ -19,6 +21,7 @@ type Item = {
 };
 
 export default function TasksComponent() {
+  const { t } = useTranslation();
   const [items, setItems] = useState<Item[]>([
     { id: 1, title: "Reunión de equipo", date: "2023-06-15", type: "event" },
     { id: 2, title: "Terminar informe", date: "2023-06-16", type: "task" },
@@ -69,7 +72,10 @@ export default function TasksComponent() {
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">Tareas</h1>
+          <h1 className="text-3xl font-bold text-white capitalize">
+            {t("tareas")}
+          </h1>
+          <Burger />
         </div>
 
         <div className="grid gap-4">
