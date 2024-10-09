@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 type Item = {
   id: number;
@@ -19,6 +20,8 @@ type Item = {
 };
 
 export default function TasksComponent() {
+  const { t } = useTranslation(); //
+
   const [items, setItems] = useState<Item[]>([
     { id: 1, title: "Reunión de equipo", date: "2023-06-15", type: "event" },
     { id: 2, title: "Terminar informe", date: "2023-06-16", type: "task" },
@@ -40,7 +43,6 @@ export default function TasksComponent() {
   const handleEditItem = (id: number) => {
     const itemToEdit = items.find((item) => item.id === id);
     if (itemToEdit) {
-      // setNewItem(itemToEdit);
       setEditingId(id);
     }
   };
@@ -69,21 +71,19 @@ export default function TasksComponent() {
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">Tareas</h1>
+          <h1 className="text-3xl font-bold text-white capitalize">
+            {t("tareas")}
+          </h1>
         </div>
 
         <div className="grid gap-4">
           <Card className="w-full  mx-auto shadow-lg">
-            <CardHeader>
-              {/* <CardTitle className="text-2xl font-bold">
-                Tareas y Eventos
-              </CardTitle> */}
-            </CardHeader>
+            <CardHeader></CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex space-x-2 items-center">
                   <Input
-                    placeholder="Título"
+                    placeholder={t("titulo")}
                     value={newItem.title}
                     onChange={(e) =>
                       setNewItem({ ...newItem, title: e.target.value })
@@ -101,23 +101,26 @@ export default function TasksComponent() {
                     onValueChange={() =>
                       setNewItem({
                         ...newItem,
-                        // type: value as "task" | "event",
                       })
                     }
                   >
-                    <SelectTrigger className="w-32">
+                    <SelectTrigger className="w-32 capitalize">
                       <SelectValue placeholder="Tipo" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="task">Tarea</SelectItem>
-                      <SelectItem value="event">Evento</SelectItem>
+                      <SelectItem value="task" className="capitalize">
+                        {t("tareas")}
+                      </SelectItem>
+                      <SelectItem value="event" className="capitalize">
+                        {t("eventos")}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <Button
                     onClick={editingId ? handleUpdateItem : handleAddItem}
-                    className="bg-cyanDark text-white hover:bg-cyan-900"
+                    className="bg-cyanDark text-white hover:bg-cyan-900 capitalize"
                   >
-                    {editingId ? "Actualizar" : "Agregar"}
+                    {editingId ? t("actualizar") : t("agregar")}
                   </Button>
                 </div>
 
@@ -154,8 +157,8 @@ export default function TasksComponent() {
                   onClick={handleSyncWithGoogle}
                   className="ml-auto flex items-center justify-center bg-cyanDark text-white hover:bg-cyan-900"
                 >
-                  <Calendar className="mr-2 h-4 w-4" /> Sincronizar con Google
-                  Calendar
+                  <Calendar className="mr-2 h-4 w-4" />{" "}
+                  {t("sincronizar con Google Calendar")}
                 </Button>
               </div>
             </CardContent>
