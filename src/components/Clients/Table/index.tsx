@@ -1,12 +1,13 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TableComponent } from "../../Table";
-import { useClients } from "@/hooks/Client/useClients";
 import { getColumns } from "./columns";
 import { useState } from "react";
-import { Client } from "@/types/Client/Client";
 import CreateClientDialog from "../Create";
 import EditClientDialog from "../Edit";
 import { useTranslation } from "react-i18next";
+import { Burger } from "@/components/Sidebar/Burger";
+import { useClients } from "@/hooks/Client/useClients";
+import { Client } from "@/types/Client/Client";
 
 export default function ClientsComponent() {
   const { clients } = useClients({
@@ -37,6 +38,7 @@ export default function ClientsComponent() {
           <h1 className="text-3xl font-bold text-white capitalize">
             {t("clientes")}
           </h1>
+          <Burger />
         </div>
 
         <Card className="w-full  mx-auto shadow-lg">

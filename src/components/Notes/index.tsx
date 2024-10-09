@@ -17,6 +17,7 @@ type Note = {
 };
 
 export default function NotesComponent() {
+  const { t } = useTranslation();
   const [notes, setNotes] = useState<Note[]>([]);
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteContent, setNewNoteContent] = useState("");
@@ -59,7 +60,7 @@ export default function NotesComponent() {
       <div className="p-4 md:p-6 space-y-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-white capitalize">
-            {t("notas")}
+            {t("note")}
           </h1>
         </div>
 
@@ -67,37 +68,42 @@ export default function NotesComponent() {
           <CardHeader></CardHeader>
           <CardContent>
             <div className="grid gap-4">
-              <Label htmlFor="note-title" className="capitalize">
-                {t("título de la nota")}
-              </Label>
+              <Label htmlFor="note-title" className="capitalize"> {t("note_title")}</Label>
+
               <Input
                 id="note-title"
                 value={newNoteTitle}
                 onChange={(e) => setNewNoteTitle(e.target.value)}
+
+                placeholder={t("note_title")}
+                className="mb-2"
+              />
+              <Label htmlFor="note-content" className="capitalize"> {t("contenido")}</Label>
+
                 placeholder={t("titulo")}
                 className="mb-2"
               />
-              <Label htmlFor="note-content" className="capitalize">
-                {t("contenido")}
-              </Label>
               <Textarea
                 id="note-content"
                 value={newNoteContent}
                 onChange={(e) => setNewNoteContent(e.target.value)}
-                placeholder={t("escribe tu nota aquí")}
+
+                placeholder={t("contenido")}
+
                 className="mb-2"
               />
               <Button
                 onClick={addNote}
-                className="ml-auto flex items-center justify-center bg-cyanDark text-white hover:bg-cyan-900"
+                className="ml-auto flex items-center justify-center bg-cyanDark text-white hover:bg-cyan-900 capitalize"
               >
-                {t("agregar nota")}
+                {t("newNote")}
+
               </Button>
             </div>
             <ScrollArea className="h-[200px] rounded-md border mt-2">
               {notes.length === 0 ? (
-                <p className="text-center text-muted-foreground p-4">
-                  {t("no hay notas guardadas")}
+                <p className="text-center text-muted-foreground p-4 capitalize">
+                  {t("notasNoGuardadas")}
                 </p>
               ) : (
                 <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -119,8 +125,11 @@ export default function NotesComponent() {
                             }
                             className="mb-2"
                           />
-                          <Button onClick={() => setEditingNoteId(null)}>
-                            Guardar
+                          <Button
+                            onClick={() => setEditingNoteId(null)}
+                            className="capitalize"
+                          >
+                            {t("save")}
                           </Button>
                         </>
                       ) : (

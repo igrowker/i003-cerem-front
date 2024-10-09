@@ -15,14 +15,14 @@ const NavComponent = () => {
           {t("inicio")}
         </Link>
         <Link to={"/nosotros"} className="hover:underline">
-          {t("nosotros")}
+          Nuestro Equipo
         </Link>
-        <Link to={"/funcionalidades"} className="hover:underline">
-          {t("funcionalidades")}
+        {/* <Link to={"/funcionalidades"} className="hover:underline">
+          Funcionalidades
         </Link>
         <Link to={"/integraciones"} className="hover:underline">
-          {t("integraciones")}
-        </Link>
+          Integraciones
+        </Link> */}
       </nav>
       <div className="space-x-4">
         <button className="text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">

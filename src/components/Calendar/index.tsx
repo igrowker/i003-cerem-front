@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { messages } from "./utils";
 import { useState } from "react";
 import CalendarControlButtons from "./Button";
+import { Burger } from "../Sidebar/Burger";
 
 const locales: { [key: string]: Locale } = {
   "en-US": enUS,
@@ -25,13 +26,13 @@ const CalendarComponent = () => {
   const [date, setDate] = useState(new Date());
 
   const localizer: DateLocalizer = dateFnsLocalizer({
-    format: (date: Date, stringFormat: string, locale: Locale) =>
+    format: (date: Date, stringFormat: string) =>
       format(date, stringFormat, { locale: locales[currentLang] }),
-    parse: (dateString: string, stringFormat: string, locale: Locale) =>
+    parse: (dateString: string, stringFormat: string) =>
       parse(dateString, stringFormat, new Date(), {
         locale: locales[currentLang],
       }),
-    startOfWeek: (date: Date, locale: Locale) =>
+    startOfWeek: (date: Date) =>
       startOfWeek(date, { locale: locales[currentLang] }),
     getDay: (date: Date) => getDay(date),
     locales,
@@ -105,6 +106,7 @@ const CalendarComponent = () => {
           <h1 className="text-3xl font-bold text-white capitalize">
             {t("calendario")}
           </h1>
+          <Burger />
         </div>
 
         <Card className="w-full mx-auto shadow-lg">

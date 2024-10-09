@@ -31,7 +31,7 @@ export const Burger = () => {
               <div className="w-full h-[200px] flex flex-col justify-evenly items-center md:items-end">
                 {/* Botones con íconos */}
                 <ButtonSideBarBurger
-                  text={t("inicio")}
+                  text={t("dashboard")}
                   icon={<AiOutlineHome className="ml-1" />}
                   isOpen={isOpen}
                   url="/dashboard"
@@ -46,13 +46,13 @@ export const Burger = () => {
                   text={t("campaña")}
                   icon={<MdCampaign className="ml-1" />}
                   isOpen={isOpen}
-                  url="/calendarios"
+                  url="/campanas"
                 />
                 <ButtonSideBarBurger
                   text={t("estadisticas")}
                   icon={<BsClipboardDataFill className="ml-1" />}
                   isOpen={isOpen}
-                  url="/calendarios"
+                  url="/estadisticas"
                 />
                 <ButtonSideBarBurger
                   text={t("tareas")}
@@ -61,7 +61,7 @@ export const Burger = () => {
                   url="/tareas"
                 />
                 <ButtonSideBarBurger
-                   text={t("clientes")}
+                  text={t("clientes")}
                   icon={<FaUsers className="ml-1" />}
                   isOpen={isOpen}
                   url="/clientes"
@@ -80,13 +80,13 @@ export const Burger = () => {
               <div className="w-full flex flex-col justify-end items-center md:items-end mb-3">
                 {/* Botones adicionales */}
                 <ButtonSideBarBurger
-                   text={t("configuracion")}
+                  text={t("configuracion")}
                   icon={<IoMdSettings className="ml-1" />}
                   isOpen={isOpen}
                   url="/configuración"
                 />
                 <ButtonSideBarBurger
-                   text={t("cerrar_sesion")}
+                  text={t("cerrar_sesion")}
                   icon={<IoMdLogOut className="ml-1" />}
                   isOpen={isOpen}
                   url="/iniciar-sesion"
