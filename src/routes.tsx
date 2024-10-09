@@ -19,6 +19,7 @@ import { Error } from "./pages/Error/Error";
 
 import CampanaPage from "./pages/Campana";
 import EstadisticasPage from "./pages/Estadisticas";
+import { NosotrosPage } from "./pages/Nosotros";
 // Componente que se encarga de verificar si mostrar o no el NavComponent y el Sidebar
 function LayoutWithNavAndSidebar() {
   const location = useLocation();
@@ -45,6 +46,7 @@ function LayoutWithNavAndSidebar() {
             <Route path="/registrate" element={<RegisterPage />} />
             <Route path="/" element={<Navigate to="/inicio" />} />
             <Route path="/inicio" element={<HomePage />} />
+            <Route path="/nosotros" element={<NosotrosPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/estadisticas" element={<EstadisticasPage />} />
             <Route path="/calendarios" element={<CalendarPage />} />
