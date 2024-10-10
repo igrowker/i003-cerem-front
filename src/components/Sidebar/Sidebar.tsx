@@ -10,10 +10,29 @@ import { MdCampaign } from "react-icons/md";
 import { useTranslation } from "react-i18next"; // <--- Importación
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { BsClipboardDataFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/authSlice";
 
 export const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { t } = useTranslation(); // <--- Uso del hook
+  const { t } = useTranslation();
+  const [isLoggingOut, setIsLoggingOut] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    setIsLoggingOut(true);
+
+    setTimeout(() => {
+      localStorage.removeItem("authToken");
+      dispatch(logout());
+      console.log("Logging out...");
+      setIsLoggingOut(false);
+      navigate("/iniciar-sesion");
+    }, 2000);
+  };
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -112,12 +131,23 @@ export const Sidebar: React.FC = () => {
             isOpen={isOpen}
             url="/configuración"
           />
-          <ButtonSideBar
-            text={t("cerrar_sesion")}
-            icon={<IoMdLogOut className="mr-1" />}
-            isOpen={isOpen}
-            url="/iniciar-sesion"
-          />
+          <div className="w-full flex flex-col justify-end items-center md:items-end mb-3">
+            {/* Botones adicionales */}
+            <button
+              onClick={handleLogout}
+              className="flex items-center text-white"
+              disabled={isLoggingOut}
+            >
+              {isLoggingOut ? (
+                "Logging out..."
+              ) : (
+                <>
+                  <IoMdLogOut className="ml-1" />
+                  {t("cerrar_sesion")}
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </>
