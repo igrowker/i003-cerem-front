@@ -66,14 +66,14 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="capitalize">
-            {t("editarClient")} - {client.name}
+            {t("editarClient")} - {client.nombre}
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
-              name="name"
+              name="nombre"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-black capitalize">
@@ -88,7 +88,7 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
             />
             <FormField
               control={form.control}
-              name="username"
+              name="usuario"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-black capitalize">
