@@ -6,14 +6,9 @@ import CreateClientDialog from "../Create";
 import EditClientDialog from "../Edit";
 import { useTranslation } from "react-i18next";
 import { Burger } from "@/components/Sidebar/Burger";
-import { useClients } from "@/hooks/Client/useClients";
 import { Client } from "@/types/Client/Client";
 
-export default function ClientsComponent() {
-  const { clients } = useClients({
-    auth: true,
-    fetchClients: true,
-  });
+export default function ClientsComponent({ clients }: { clients: Client[] }) {
   const { t } = useTranslation();
   const [isCreateClientDialogOpen, setIsCreateClientDialogOpen] =
     useState(false);
@@ -22,7 +17,7 @@ export default function ClientsComponent() {
   const [editingClient, setEditingClient] = useState<Client | null>(null);
 
   const customFilterFunction = (client: Client, query: string) =>
-    client.name.toLowerCase().includes(query.toLowerCase());
+    client.nombre.toLowerCase().includes(query.toLowerCase());
 
   const handleEditClient = (client: Client) => {
     setEditingClient(client);
