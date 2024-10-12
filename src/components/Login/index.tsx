@@ -20,6 +20,7 @@ import axios from "axios";
 import { loginSuccess } from "@/store/authSlice";
 import { useDispatch } from "react-redux";
 import LoadingAnimation from "../Loading";
+import { url } from "@/services/axiosConfig";
 
 export default function LoginComponent() {
   const { t } = useTranslation();
@@ -40,13 +41,11 @@ export default function LoginComponent() {
     console.log("Login attempted with:", values);
 
     try {
-      const response = await axios.post(
-        `https://i003-cerem-back.onrender.com/api/token/`,
-        {
-          email: values.email,
-          password: values.password,
-        }
-      );
+      const response = await axios.post(`${url}api/token/`, {
+        email: values.email,
+        password: values.password,
+      });
+      console.log("Login response:", response.data);
       const { access: token } = response.data;
       if (token) {
         localStorage.setItem("authToken", token);
@@ -65,7 +64,7 @@ export default function LoginComponent() {
     <div className="mt-20 flex items-center justify-center">
       {isLoading ? (
         <div className="flex justify-center items-center h-64">
-          <LoadingAnimation /> 
+          <LoadingAnimation />
         </div>
       ) : (
         <>
