@@ -40,7 +40,10 @@ export default function CreateClientDialog({ isOpen, setIsOpen }: Props) {
 
   async function onSubmit(values: z.infer<typeof schemaClient>) {
     try {
-      const promise = addClientMutation.mutateAsync(values);
+      const promise = addClientMutation.mutateAsync({
+        ...values,
+        usuario: String(1),
+      });
       toast.promise(promise, {
         loading: "Creando cliente...",
         success: "Cliente creado correctamente",
@@ -110,19 +113,7 @@ export default function CreateClientDialog({ isOpen, setIsOpen }: Props) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="usuario"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-black">Usuario</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <DialogFooter className="flex items-center justify-between mt-2">
               <Button
                 variant="outline"

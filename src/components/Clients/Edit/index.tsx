@@ -22,6 +22,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { clientSchema } from "@/validators/client.schema";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
+import { useClientMutation } from "@/hooks/Client/useClientMutation";
+import { toast } from "sonner";
 
 interface Props {
   isOpen: boolean;
@@ -29,10 +31,10 @@ interface Props {
   client: Client;
 }
 
-
 export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
   const { t } = useTranslation();
   const schemaClient = clientSchema(t);
+  const { updateClientMutation } = useClientMutation();
   const form = useForm<z.infer<typeof schemaClient>>({
     resolver: zodResolver(schemaClient),
     defaultValues: client,
@@ -48,6 +50,20 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
     try {
       console.log(values);
       form.reset();
+      toast.promise(
+        updateClientMutation.mutateAsync({
+          id: Number(client.id),
+          client: {
+            ...values,
+            usuario: client.usuario,
+          },
+        }),
+        {
+          loading: "Actualizando cliente...",
+          success: "Cliente actualizado correctamente",
+          error: "Error al actualizar el cliente",
+        }
+      );
       setIsOpen(false);
     } catch (error) {
       console.error("Error al editar el cliente", error);
@@ -88,11 +104,11 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
             />
             <FormField
               control={form.control}
-              name="usuario"
+              name="telefono"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-black capitalize">
-                    {t("usuario")}
+                    {t("telefono")}
                   </FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -115,8 +131,12 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
               )}
             />
             <DialogFooter className="flex items-center justify-between mt-2">
-              <Button variant="outline" onClick={() => setIsOpen(false)} className="capitalize">
-              {t("cancelar")}
+              <Button
+                variant="outline"
+                onClick={() => setIsOpen(false)}
+                className="capitalize"
+              >
+                {t("cancelar")}
               </Button>
               <Button
                 type="submit"

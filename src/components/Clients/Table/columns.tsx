@@ -43,15 +43,7 @@ export const getColumns = (
         </div>
       ),
     },
-    {
-      accessorKey: "usuario",
-      header: "Usuario",
-      cell: ({ row }) => (
-        <div className="flex items-center">
-          <p className="text-sm font-medium">{row.original.usuario}</p>
-        </div>
-      ),
-    },
+
     {
       accessorKey: "",
       header: " ",

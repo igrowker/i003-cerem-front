@@ -12,7 +12,6 @@ import {
 import { useTranslation } from "react-i18next";
 import { useClientMutation } from "@/hooks/Client/useClientMutation";
 import { toast } from "sonner";
-// import { toast } from "sonner";
 
 interface Props {
   idClient: number;
