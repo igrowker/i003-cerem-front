@@ -23,7 +23,7 @@ export const useClientMutation = () => {
   const updateClientMutation = useMutation({
     mutationFn: ({ id, client }: { id: number; client: Client }) => putClient(id, client),
     onSuccess: (client, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: ['client', variables.id] });
+      queryClient.invalidateQueries({ queryKey: ['clients'] });
       console.log("client updated", client, variables, context);
     },
     onError: (error, variables, context) => {
