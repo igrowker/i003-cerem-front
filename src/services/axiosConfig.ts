@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = 'https://i003-cerem-back.onrender.com/'
+export const url = 'https://i003-cerem-back.onrender.com/'
 
 const axiosInstance = axios.create({
     baseURL: url,
