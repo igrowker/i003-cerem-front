@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
-import { IoIosCalendar, IoMdLogOut, IoMdSettings } from "react-icons/io";
+import { IoIosCalendar, IoMdLogOut } from "react-icons/io";
 import { FaListUl, FaUsers } from "react-icons/fa";
 import { ButtonSideBar } from "./ButtonSidebar";
 import { IoIosArrowBack } from "react-icons/io";
@@ -98,39 +98,6 @@ export const Sidebar: React.FC = () => {
         </div>
 
         <div className="w-3/4 mb-5">
-          {isOpen ? (
-            <div className="flex items-center gap-2 mb-2">
-              <div className=" overflow-hidden" />
-              <img
-                src="https://media.istockphoto.com/id/1386479313/es/foto/feliz-mujer-de-negocios-afroamericana-millennial-posando-aislada-en-blanco.jpg?s=612x612&w=0&k=20&c=JP0NBxlxG2-bdpTRPlTXBbX13zkNj0mR5g1KoOdbtO4="
-                alt=""
-                className="w-8 h-8 rounded-full"
-              />
-              <div>
-                <p className="text-base font-medium text-[#779EBF]">
-                  {t("usuario")}
-                </p>
-                <p className="text-base text-cyanDark">
-                  {t("usuario")}@ejemplo.com
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="w-full flex justify-center items-center mb-3">
-              <img
-                src="https://media.istockphoto.com/id/1386479313/es/foto/feliz-mujer-de-negocios-afroamericana-millennial-posando-aislada-en-blanco.jpg?s=612x612&w=0&k=20&c=JP0NBxlxG2-bdpTRPlTXBbX13zkNj0mR5g1KoOdbtO4="
-                alt=""
-                className="w-8 h-8 rounded-full"
-              />
-            </div>
-          )}
-
-          <ButtonSideBar
-            text={t("configuracion")}
-            icon={<IoMdSettings className="mr-1" />}
-            isOpen={isOpen}
-            url="/configuración"
-          />
           <div className="w-full flex flex-col justify-end items-center md:items-end mb-3">
             {/* Botones adicionales */}
             <button

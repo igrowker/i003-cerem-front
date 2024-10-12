@@ -8,9 +8,7 @@ export const clientSchema = (t: (key: string) => string) =>
         email: z.string({
             required_error: t('emailRequerido'),
         }).email(t('emailInvalido')),
-        usuario: z.string({
-            required_error: t('usuarioRequerido'),
-        }),
+
         telefono: z.string({
             required_error: t('telefonoRequerido'),
         }),
