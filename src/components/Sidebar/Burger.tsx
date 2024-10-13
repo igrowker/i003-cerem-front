@@ -1,5 +1,5 @@
 import { AiOutlineHome } from "react-icons/ai";
-import { IoIosCalendar, IoMdLogOut, IoMdSettings } from "react-icons/io";
+import { IoIosCalendar, IoMdLogOut } from "react-icons/io";
 import { FaListUl, FaUsers } from "react-icons/fa";
 import { ButtonSideBarBurger } from "./ButtonSidebar";
 import { useState } from "react";
@@ -8,12 +8,31 @@ import { IoMdClose } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { MdCampaign } from "react-icons/md";
 import { BsClipboardDataFill } from "react-icons/bs";
+import { logout } from "@/store/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export const Burger = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    setIsLoggingOut(true);
+
+    setTimeout(() => {
+      localStorage.removeItem("authToken");
+      dispatch(logout());
+      console.log("Logging out...");
+      setIsLoggingOut(false);
+      navigate("/iniciar-sesion");
+    }, 2000);
   };
 
   return (
@@ -79,18 +98,20 @@ export const Burger = () => {
               </div>
               <div className="w-full flex flex-col justify-end items-center md:items-end mb-3">
                 {/* Botones adicionales */}
-                <ButtonSideBarBurger
-                  text={t("configuracion")}
-                  icon={<IoMdSettings className="ml-1" />}
-                  isOpen={isOpen}
-                  url="/configuración"
-                />
-                <ButtonSideBarBurger
-                  text={t("cerrar_sesion")}
-                  icon={<IoMdLogOut className="ml-1" />}
-                  isOpen={isOpen}
-                  url="/iniciar-sesion"
-                />
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center text-white"
+                  disabled={isLoggingOut}
+                >
+                  {isLoggingOut ? (
+                    "Logging out..."
+                  ) : (
+                    <>
+                      <IoMdLogOut className="ml-1" />
+                      {t("cerrar_sesion")}
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           </div>

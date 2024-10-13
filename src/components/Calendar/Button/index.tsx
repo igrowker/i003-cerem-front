@@ -48,12 +48,12 @@ const CalendarControlButtons: React.FC<CalendarControlButtonsProps> = ({
         </div>
 
         <div className="flex space-x-4">
-          <button
+          {/* <button
             onClick={() => onViewChange("month")}
             className={getButtonClass("month")}
           >
             {t("month")}
-          </button>
+          </button> */}
           <button
             onClick={() => onViewChange("week")}
             className={getButtonClass("week")}
@@ -66,12 +66,12 @@ const CalendarControlButtons: React.FC<CalendarControlButtonsProps> = ({
           >
             {t("day")}
           </button>
-          <button
+          {/* <button
             onClick={() => onViewChange("agenda")}
             className={getButtonClass("agenda")}
           >
             {t("schedule")}
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

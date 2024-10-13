@@ -1,7 +1,9 @@
 export interface Client {
-    id: number;
-    name: string;
-    username: string;
+    id?: number;
+    nombre: string;
+    telefono: string;
     email: string;
+    usuario?: string,
+    fecha_creacion?: string | Date;
 }
 

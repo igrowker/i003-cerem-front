@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
-import { IoIosCalendar, IoMdLogOut, IoMdSettings } from "react-icons/io";
+import { IoIosCalendar, IoMdLogOut } from "react-icons/io";
 import { FaListUl, FaUsers } from "react-icons/fa";
 import { ButtonSideBar } from "./ButtonSidebar";
 import { IoIosArrowBack } from "react-icons/io";
@@ -10,10 +10,29 @@ import { MdCampaign } from "react-icons/md";
 import { useTranslation } from "react-i18next"; // <--- Importación
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { BsClipboardDataFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/authSlice";
 
 export const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { t } = useTranslation(); // <--- Uso del hook
+  const { t } = useTranslation();
+  const [isLoggingOut, setIsLoggingOut] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    setIsLoggingOut(true);
+
+    setTimeout(() => {
+      localStorage.removeItem("authToken");
+      dispatch(logout());
+      console.log("Logging out...");
+      setIsLoggingOut(false);
+      navigate("/iniciar-sesion");
+    }, 2000);
+  };
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -79,45 +98,23 @@ export const Sidebar: React.FC = () => {
         </div>
 
         <div className="w-3/4 mb-5">
-          {isOpen ? (
-            <div className="flex items-center gap-2 mb-2">
-              <div className=" overflow-hidden" />
-              <img
-                src="https://media.istockphoto.com/id/1386479313/es/foto/feliz-mujer-de-negocios-afroamericana-millennial-posando-aislada-en-blanco.jpg?s=612x612&w=0&k=20&c=JP0NBxlxG2-bdpTRPlTXBbX13zkNj0mR5g1KoOdbtO4="
-                alt=""
-                className="w-8 h-8 rounded-full"
-              />
-              <div>
-                <p className="text-base font-medium text-[#779EBF]">
-                  {t("usuario")}
-                </p>
-                <p className="text-base text-cyanDark">
-                  {t("usuario")}@ejemplo.com
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="w-full flex justify-center items-center mb-3">
-              <img
-                src="https://media.istockphoto.com/id/1386479313/es/foto/feliz-mujer-de-negocios-afroamericana-millennial-posando-aislada-en-blanco.jpg?s=612x612&w=0&k=20&c=JP0NBxlxG2-bdpTRPlTXBbX13zkNj0mR5g1KoOdbtO4="
-                alt=""
-                className="w-8 h-8 rounded-full"
-              />
-            </div>
-          )}
-
-          <ButtonSideBar
-            text={t("configuracion")}
-            icon={<IoMdSettings className="mr-1" />}
-            isOpen={isOpen}
-            url="/configuración"
-          />
-          <ButtonSideBar
-            text={t("cerrar_sesion")}
-            icon={<IoMdLogOut className="mr-1" />}
-            isOpen={isOpen}
-            url="/iniciar-sesion"
-          />
+          <div className="w-full flex flex-col justify-end items-center md:items-end mb-3">
+            {/* Botones adicionales */}
+            <button
+              onClick={handleLogout}
+              className="flex items-center text-white"
+              disabled={isLoggingOut}
+            >
+              {isLoggingOut ? (
+                "Logging out..."
+              ) : (
+                <>
+                  <IoMdLogOut className="ml-1" />
+                  {t("cerrar_sesion")}
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </>

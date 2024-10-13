@@ -22,6 +22,8 @@ import { clientSchema } from "@/validators/client.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
+import { useClientMutation } from "@/hooks/Client/useClientMutation";
+import { toast } from "sonner";
 
 interface Props {
   isOpen: boolean;
@@ -30,6 +32,7 @@ interface Props {
 
 export default function CreateClientDialog({ isOpen, setIsOpen }: Props) {
   const { t } = useTranslation();
+  const { addClientMutation } = useClientMutation();
   const schemaClient = clientSchema(t);
   const form = useForm<z.infer<typeof schemaClient>>({
     resolver: zodResolver(schemaClient),
@@ -37,6 +40,15 @@ export default function CreateClientDialog({ isOpen, setIsOpen }: Props) {
 
   async function onSubmit(values: z.infer<typeof schemaClient>) {
     try {
+      const promise = addClientMutation.mutateAsync({
+        ...values,
+        usuario: String(1),
+      });
+      toast.promise(promise, {
+        loading: "Creando cliente...",
+        success: "Cliente creado correctamente",
+        error: "Error al crear el cliente",
+      });
       console.log(values);
       form.reset();
       setIsOpen(false);
@@ -62,26 +74,11 @@ export default function CreateClientDialog({ isOpen, setIsOpen }: Props) {
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
-              name="name"
+              name="nombre"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-black capitalize">
                     {t("nombre")}
-                  </FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-black capitalize">
-                    {t("usuario")}
                   </FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -103,8 +100,26 @@ export default function CreateClientDialog({ isOpen, setIsOpen }: Props) {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="telefono"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-black">telefono</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <DialogFooter className="flex items-center justify-between mt-2">
-              <Button variant="outline" onClick={() => setIsOpen(false)} className="capitalize">
+              <Button
+                variant="outline"
+                onClick={() => setIsOpen(false)}
+                className="capitalize"
+              >
                 {t("cancelar")}
               </Button>
               <Button

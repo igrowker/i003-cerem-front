@@ -17,56 +17,53 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { Client } from "@/types/Client/Client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { clientSchema } from "@/validators/client.schema";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
-import { useClientMutation } from "@/hooks/Client/useClientMutation";
 import { toast } from "sonner";
+import { Tasks } from "@/types/Tasks/Tasks";
+import { useTasksMutation } from "@/hooks/Tasks/useTasksMutation";
 
 interface Props {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  client: Client;
+  tasks: Tasks;
 }
 
-export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
+export default function EditTasksDialog({ isOpen, setIsOpen, tasks }: Props) {
   const { t } = useTranslation();
   const schemaClient = clientSchema(t);
-  const { updateClientMutation } = useClientMutation();
-  const form = useForm<z.infer<typeof schemaClient>>({
+  const { updateTasksMutation } = useTasksMutation();
+  const form = useForm<z.infer<any>>({
     resolver: zodResolver(schemaClient),
-    defaultValues: client,
+    defaultValues: tasks,
   });
 
   useEffect(() => {
-    if (isOpen && client) {
-      form.reset(client);
+    if (isOpen && tasks) {
+      form.reset(tasks);
     }
-  }, [client, isOpen]);
+  }, [tasks, isOpen]);
 
-  async function onSubmit(values: z.infer<typeof schemaClient>) {
+  async function onSubmit(values: z.infer<any>) {
     try {
       console.log(values);
       form.reset();
       toast.promise(
-        updateClientMutation.mutateAsync({
-          id: Number(client.id),
-          client: {
-            ...values,
-            usuario: client.usuario,
-          },
+        updateTasksMutation.mutateAsync({
+          id: Number(tasks.id),
+          tasks: values,
         }),
         {
-          loading: "Actualizando cliente...",
-          success: "Cliente actualizado correctamente",
-          error: "Error al actualizar el cliente",
+          loading: "Actualizando tarea...",
+          success: "Tarea actualizada correctamente",
+          error: "Error al actualizar la tarea",
         }
       );
       setIsOpen(false);
     } catch (error) {
-      console.error("Error al editar el cliente", error);
+      console.error("Error al editar la tarea", error);
     }
   }
 
@@ -82,18 +79,18 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="capitalize">
-            {t("editarClient")} - {client.nombre}
+            {t("editarTarea")} - {tasks.descripcion}
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
-              name="nombre"
+              name="descripcion"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-black capitalize">
-                    {t("nombre")}
+                    {t("descripcion")}
                   </FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -104,32 +101,20 @@ export default function EditClientDialog({ isOpen, setIsOpen, client }: Props) {
             />
             <FormField
               control={form.control}
-              name="telefono"
+              name="fecha"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-black capitalize">
-                    {t("telefono")}
+                    {t("fecha")}
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} type="date" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-black">Email</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <DialogFooter className="flex items-center justify-between mt-2">
               <Button
                 variant="outline"

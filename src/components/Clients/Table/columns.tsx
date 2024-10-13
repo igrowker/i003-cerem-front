@@ -17,11 +17,11 @@ export const getColumns = (
       },
     },
     {
-      accessorKey: "name",
+      accessorKey: "nombre",
       header: t("nombre"),
       cell: ({ row }) => (
         <div className="flex flex-col ml-2">
-          <p className="text-sm font-medium">{row.original.name}</p>
+          <p className="text-sm font-medium">{row.original.nombre}</p>
         </div>
       ),
     },
@@ -35,6 +35,16 @@ export const getColumns = (
       ),
     },
     {
+      accessorKey: "telefono",
+      header: "Teléfono",
+      cell: ({ row }) => (
+        <div className="flex items-center">
+          <p className="text-sm font-medium">{row.original.telefono}</p>
+        </div>
+      ),
+    },
+
+    {
       accessorKey: "",
       header: " ",
       cell: ({ row }) => (
@@ -45,7 +55,7 @@ export const getColumns = (
           >
             {t("editar")}
           </Button>
-          <DeleteClientDialog idClient={row.original.id} />
+          <DeleteClientDialog idClient={Number(row.original.id)} />
         </div>
       ),
     },

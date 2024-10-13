@@ -10,7 +10,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useTranslation } from "react-i18next";
-// import { toast } from "sonner";
+import { useClientMutation } from "@/hooks/Client/useClientMutation";
+import { toast } from "sonner";
 
 interface Props {
   idClient: number;
@@ -18,16 +19,16 @@ interface Props {
 
 export default function DeleteClientDialog({ idClient }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { deleteClientMutation } = useClientMutation();
   const toggleDialog = () => setIsOpen(!isOpen);
   const { t } = useTranslation();
   const handleConfirmDelete = async () => {
     try {
-      console.log("idClient", idClient);
-      //   toast.promise(deleteStudyMutation.mutateAsync(idStudy), {
-      //     loading: "Eliminando estudio...",
-      //     success: "Estudio eliminado con éxito!",
-      //     error: "Error al eliminar el estudio",
-      //   });
+        toast.promise(deleteClientMutation.mutateAsync(idClient), {
+          loading: "Eliminando client...",
+          success: "Client eliminado con éxito!",
+          error: "Error al eliminar el Client",
+        });
     } catch (error) {
       console.error("Error al eliminar el cliente", error);
     } finally {

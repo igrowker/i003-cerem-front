@@ -13,13 +13,26 @@ import { messages } from "./utils";
 import { useState } from "react";
 import CalendarControlButtons from "./Button";
 import { Burger } from "../Sidebar/Burger";
+import { useCampaign } from "@/hooks/Campaign/useCampaign";
+import { Campaign } from "@/types/Campaign/Campaign";
+import { useTasks } from "@/hooks/Tasks/useTasks";
 
 const locales: { [key: string]: Locale } = {
   "en-US": enUS,
   es: es,
 };
 
+const minTime = new Date();
+minTime.setHours(7, 0, 0);
+
+const maxTime = new Date();
+maxTime.setHours(19, 0, 0);
+
+
+
 const CalendarComponent = () => {
+  const { campaign } = useCampaign({ auth: true, fetchCampaign: true });
+  const { tasks } = useTasks({ auth: true });
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
   const [view, setView] = useState<View>("month");
@@ -37,6 +50,40 @@ const CalendarComponent = () => {
     getDay: (date: Date) => getDay(date),
     locales,
   });
+
+  const campaignEvents = (campaign as Campaign[])
+    .filter((item) => item.fecha_inicio)
+    .map((item) => {
+      const startDate = new Date(item.fecha_inicio as string);
+      const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
+      return {
+        id: item.id,
+        title: item.nombre,
+        start: startDate,
+        end: endDate,
+        type: "campaign",
+      };
+    });
+  const taskEvents = tasks.map((task) => {
+    const taskDate = new Date(task.fecha);
+
+    const start = new Date(taskDate.setHours(11, 0, 0, 0));
+
+    const end = new Date(taskDate.setHours(13, 0, 0, 0));
+
+    return {
+      id: task.id,
+      title: task.descripcion,
+      start: start,
+      end: end,
+      type: "task",
+    };
+  });
+
+  // Combina eventos de campañas y tareas
+  const events = [...campaignEvents, ...taskEvents];
+
+  console.log(events, "events");
 
   const handleToday = () => setDate(new Date());
 
@@ -99,6 +146,23 @@ const CalendarComponent = () => {
     return "";
   };
 
+
+  const eventPropGetter = (event: any) => {
+    let backgroundColor = "";
+    if (event.type === "task") {
+      backgroundColor = "bg-cyan-900";
+    } else if (event.type === "campaign") {
+      backgroundColor = "bg-green-500"; // Cambia a otro color si es campaña
+    }
+  
+    return {
+      className: backgroundColor,
+      style: {
+        color: "white", // Color de texto blanco para ambos
+      },
+    };
+  };
+
   return (
     <div className="flex-1 overflow-auto">
       <div className="p-4 md:p-6 space-y-6">
@@ -126,9 +190,13 @@ const CalendarComponent = () => {
                 localizer={localizer}
                 startAccessor="start"
                 endAccessor="end"
+                events={events}
                 messages={messages[currentLang]}
                 className="bg-white max-h-[750px]"
+                eventPropGetter={eventPropGetter}
                 view={view}
+                min={minTime}
+                max={maxTime}
                 onView={handleViewChange}
                 date={date}
                 onNavigate={(newDate: Date, newView: View) => {
