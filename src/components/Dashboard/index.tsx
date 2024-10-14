@@ -5,6 +5,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { CheckCircle, ListTodo } from "lucide-react";
 import { Burger } from "../Sidebar/Burger";
 import { useTasks } from "@/hooks/Tasks/useTasks";
+import { formatDate } from "@/common/Helpers/utils";
 
 export default function DashboardComponent() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -65,7 +66,7 @@ export default function DashboardComponent() {
                       type="checkbox"
                       className="rounded border-[#779EBF] text-[#0097B2] focus:ring-[#5CE1E6]"
                     />
-                    <span className="text-[#08121F]">{task.descripcion}</span>
+                    <span className="text-[#08121F]">{task.descripcion} - {formatDate(task.fecha)}</span>
                   </li>
                 ))}
               </ul>

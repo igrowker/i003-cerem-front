@@ -20,8 +20,8 @@ const roleGroups = [
         name: "Francisco Albert",
         role: "Frontend Developer",
         image: "assets/team-images/francisco.jpeg",
-        github: "https://www.linkedin.com/in/francisco-albert-091646195/",
-        linkedin: "https://github.com/fran-albert",
+        github: "https://github.com/fran-albert",
+        linkedin: "https://www.linkedin.com/in/francisco-albert-091646195/",
       },
       {
         name: "Elias Giannantonio",
@@ -132,6 +132,13 @@ const roleGroups = [
         github: "https://github.com/Matomill",
         linkedin: "https://www.linkedin.com/in/matias-leonel-cavallo-28792241/",
       },
+      {
+        name: "Lucas Gonzalez",
+        role: "Data Analyst",
+        image: "assets/team-images/lucas.jpeg",
+        github: "https://github.com/lucasexe98",
+        linkedin: "https://www.linkedin.com/in/lucasgonzaleez/",
+      },
     ],
   },
   {
@@ -140,7 +147,7 @@ const roleGroups = [
       {
         name: "Ernesto Cevasco",
         role: "Project Manager",
-        image: "assets/team-images/ernesto.jpeg",
+        image: "assets/team-images/ernesto.jpg",
         github: "https://github.com/Noobuyer",
         linkedin: "https://www.linkedin.com/in/ernesto-cevasco-6b166a12b/",
       },

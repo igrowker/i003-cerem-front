@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 export default function LoadingAnimation() {
   const circleVariants = {
@@ -10,7 +10,7 @@ export default function LoadingAnimation() {
       scale: 1.2,
       opacity: 1,
     },
-  }
+  };
 
   const containerVariants = {
     start: {
@@ -22,10 +22,9 @@ export default function LoadingAnimation() {
       transition: {
         staggerChildren: 0.2,
         staggerDirection: -1,
-        repeat: Infinity,
       },
     },
-  }
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -38,7 +37,7 @@ export default function LoadingAnimation() {
         {[0, 1, 2].map((index) => (
           <motion.span
             key={index}
-            className="w-4 h-4 bg-greenSecondary rounded-full"
+            className="w-4 h-4 bg-black rounded-full"
             variants={circleVariants}
             transition={{
               duration: 0.5,
@@ -50,5 +49,5 @@ export default function LoadingAnimation() {
         ))}
       </motion.div>
     </div>
-  )
+  );
 }
