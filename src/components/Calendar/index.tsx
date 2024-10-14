@@ -28,10 +28,9 @@ minTime.setHours(7, 0, 0);
 const maxTime = new Date();
 maxTime.setHours(19, 0, 0);
 
-
-
 const CalendarComponent = () => {
   const { campaign } = useCampaign({ auth: true, fetchCampaign: true });
+  console.log(campaign, "campaign");
   const { tasks } = useTasks({ auth: true });
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
@@ -55,7 +54,12 @@ const CalendarComponent = () => {
     .filter((item) => item.fecha_inicio)
     .map((item) => {
       const startDate = new Date(item.fecha_inicio as string);
-      const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
+
+      // Ajustar la hora de inicio de la campaña a una hora razonable, por ejemplo 9:00 AM
+      startDate.setHours(9, 0, 0, 0); // 9:00 AM
+
+      const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // Dura 1 hora
+
       return {
         id: item.id,
         title: item.nombre,
@@ -64,6 +68,7 @@ const CalendarComponent = () => {
         type: "campaign",
       };
     });
+
   const taskEvents = tasks.map((task) => {
     const taskDate = new Date(task.fecha);
 
@@ -146,7 +151,6 @@ const CalendarComponent = () => {
     return "";
   };
 
-
   const eventPropGetter = (event: any) => {
     let backgroundColor = "";
     if (event.type === "task") {
@@ -154,7 +158,7 @@ const CalendarComponent = () => {
     } else if (event.type === "campaign") {
       backgroundColor = "bg-green-500"; // Cambia a otro color si es campaña
     }
-  
+
     return {
       className: backgroundColor,
       style: {

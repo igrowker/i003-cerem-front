@@ -1,18 +1,15 @@
-import { createClient } from "@/api/Clients/create-clients";
-import { deleteClient } from "@/api/Clients/delete-clients";
-import { putClient } from "@/api/Clients/put-clients-by-id";
-import { Client } from "@/types/Client/Client";
+import { createCampaign } from "@/api/Campain/create-campaign";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 
-export const useClientMutation = () => {
+export const useCampaingMutation = () => {
   const queryClient = useQueryClient();
 
-  const addClientMutation = useMutation({
-    mutationFn: createClient,
-    onSuccess: (client, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: ['clients'] });
-      console.log("client created", client, variables, context);
+  const addCampaignMutation = useMutation({
+    mutationFn: createCampaign,
+    onSuccess: (campaign, variables, context) => {
+      queryClient.invalidateQueries({ queryKey: ['campaign'] });
+      console.log("campaign created", campaign, variables, context);
     },
 
     onError: (error: any, variables, context) => {
@@ -20,27 +17,6 @@ export const useClientMutation = () => {
     },
   });
 
-  const updateClientMutation = useMutation({
-    mutationFn: ({ id, client }: { id: number; client: Client }) => putClient(id, client),
-    onSuccess: (client, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: ['client', variables.id] });
-      console.log("client updated", client, variables, context);
-    },
-    onError: (error, variables, context) => {
-      console.log("Error updating client", error, variables, context);
-    },
-  });
 
-  const deleteClientMutation = useMutation({
-    mutationFn: (id: number) => deleteClient(id),
-    onSuccess: (client, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: ['clients'] })
-      console.log("client deleted", client, variables, context);
-    },
-    onError: (error, variables, context) => {
-      console.log("Error deleting client", error, variables, context);
-    },
-  });
-
-  return { addClientMutation, updateClientMutation, deleteClientMutation };
+  return { addCampaignMutation };
 };

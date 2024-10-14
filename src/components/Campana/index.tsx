@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
@@ -16,6 +17,8 @@ import { Loader2, Send, Lightbulb, MessageSquare } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslation } from "react-i18next";
 import { Burger } from "../Sidebar/Burger";
+import { useCampaingMutation } from "@/hooks/Campaign/useCampaignMutation";
+import { toast } from "sonner";
 
 type Message = {
   role: "user" | "bot";
@@ -24,10 +27,14 @@ type Message = {
 
 export default function CampanaComponent() {
   const [loading, setLoading] = useState(false);
-  const [emailContent, setEmailContent] = useState("");
+  const [campaignName, setCampaignName] = useState("");
+  const [campaignDescription, setCampaignDescription] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [campaignIdeas, setCampaignIdeas] = useState("");
   const [customerQuery, setCustomerQuery] = useState("");
   const [aiResponse, setAiResponse] = useState("");
+  const { addCampaignMutation } = useCampaingMutation();
   const [chatMessages, setChatMessages] = useState<Message[]>([
     {
       role: "bot",
@@ -47,9 +54,6 @@ export default function CampanaComponent() {
     // Simulating AI processing
     setTimeout(() => {
       switch (type) {
-        case "email":
-          setEmailContent("Here's a draft for your marketing email...");
-          break;
         case "ideas":
           setCampaignIdeas(
             "1. Social media contest\n2. Influencer partnership\n3. Limited-time offer"
@@ -57,7 +61,7 @@ export default function CampanaComponent() {
           break;
         case "response":
           setAiResponse(
-            "Thank you for your inquiry. We appreciate your interest in our products..."
+            "Gracias por tu consulta. Aquí tienes la información que necesitas..."
           );
           break;
       }
@@ -83,6 +87,45 @@ export default function CampanaComponent() {
       setChatMessages((prev) => [...prev, botMessage]);
       setLoading(false);
     }, 1500);
+  };
+
+  const handleCreateCampaign = () => {
+    const formattedStartDate = format(new Date(startDate), "dd/MM/yyyy");
+    const formattedEndDate = format(new Date(endDate), "dd/MM/yyyy");
+
+    const campaignData: any = {
+      fecha_creacion: new Date().toLocaleDateString(), // Aquí también puedes formatear si es necesario
+      fecha_inicio: formattedStartDate,
+      nombre: campaignName,
+      descripcion: campaignDescription,
+      fecha_finalizacion: formattedEndDate,
+      tipo_campana: "email",
+      clics_totales: 2147483647,
+      conversiones_totales: 2147483647,
+      google_calendar_event_id: "string",
+      google_keep_note_id: "string",
+      presupuesto: 0,
+      tamaño_audiencia: 2147483647,
+      rendimiento: null,
+      usuario: 1,
+    };
+    console.log("Campaña creada: ", campaignData);
+    try {
+      toast.promise(addCampaignMutation.mutateAsync(campaignData), {
+        loading: "Creando campaña...",
+        success: "Campaña creada con éxito",
+        error: "Error al crear la campaña",
+      });
+      setCampaignName("");
+      setCampaignDescription("");
+      setStartDate("");
+      setEndDate("");
+      setCampaignIdeas("");
+      setCustomerQuery("");
+      setAiResponse("");
+    } catch (error) {
+      console.error("Error al crear la campaña", error);
+    }
   };
 
   return (
@@ -115,33 +158,52 @@ export default function CampanaComponent() {
               <TabsContent value="email">
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email-subject">Asunto del Correo</Label>
+                    <Label htmlFor="campaign-name">Nombre de la Campaña</Label>
                     <Input
-                      id="email-subject"
-                      placeholder="Ingrese el asunto del correo"
+                      id="campaign-name"
+                      placeholder="Ingrese el nombre de la campaña"
+                      value={campaignName}
+                      onChange={(e) => setCampaignName(e.target.value)}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email-content">Contenido del Correo</Label>
+                    <Label htmlFor="campaign-description">Descripción</Label>
                     <Textarea
-                      id="email-content"
-                      placeholder="Escriba el contenido de su correo aquí"
-                      value={emailContent}
-                      onChange={(e) => setEmailContent(e.target.value)}
-                      rows={10}
+                      id="campaign-description"
+                      placeholder="Escriba una descripción"
+                      value={campaignDescription}
+                      onChange={(e) => setCampaignDescription(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="start-date">Fecha de Inicio</Label>
+                    <Input
+                      id="start-date"
+                      type="date"
+                      value={startDate}
+                      onChange={(e) => setStartDate(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="end-date">Fecha de Finalización</Label>
+                    <Input
+                      id="end-date"
+                      type="date"
+                      value={endDate}
+                      onChange={(e) => setEndDate(e.target.value)}
                     />
                   </div>
                   <Button
-                    onClick={() => handleAIAssist("email")}
+                    onClick={handleCreateCampaign}
                     disabled={loading}
                     className="bg-cyan-500 hover:bg-cyan-700 text-white py-2 px-4 rounded capitalize"
                   >
                     {loading ? (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     ) : (
-                      <Lightbulb className="mr-2 h-4 w-4" />
+                      <Send className="mr-2 h-4 w-4" />
                     )}
-                    Asistencia de IA
+                    Crear Campaña
                   </Button>
                 </div>
               </TabsContent>
@@ -264,9 +326,9 @@ export default function CampanaComponent() {
             </Tabs>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <Button className="bg-cyan-500 hover:bg-cyan-700 text-white py-2 px-4 rounded capitalize">
+            {/* <Button className="bg-cyan-500 hover:bg-cyan-700 text-white py-2 px-4 rounded capitalize">
               <Send className="mr-2 h-4 w-4" /> Enviar Campaña
-            </Button>
+            </Button> */}
           </CardFooter>
         </Card>
       </div>
