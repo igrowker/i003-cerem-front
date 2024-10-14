@@ -52,6 +52,18 @@ const roleGroups = [
     ],
   },
   {
+    title: "Dev Ops",
+    members: [
+      {
+        name: "Francisco Albert",
+        role: "Dev Ops",
+        image: "assets/team-images/francisco.jpeg",
+        github: "https://github.com/fran-albert",
+        linkedin: "https://www.linkedin.com/in/francisco-albert-091646195/",
+      },
+    ],
+  },
+  {
     title: "Backend",
     members: [
       {
