@@ -15,7 +15,7 @@ const NavComponent = () => {
           {t("inicio")}
         </Link>
         <Link to={"/nosotros"} className="hover:underline">
-          Nuestro Equipo
+        {t("nuestro_equipo")}
         </Link>
         {/* <Link to={"/funcionalidades"} className="hover:underline">
           Funcionalidades
